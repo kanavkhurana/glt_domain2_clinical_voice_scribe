@@ -1,0 +1,267 @@
+# P2 — Gold Standard SOAP Note Examples
+## Reference Material for Clinical Voice Scribe + Triage
+
+These 5 SOAP notes demonstrate the expected output quality. Use them as benchmarks when evaluating your AI-generated notes.
+
+---
+
+## SOAP NOTE 1: SIMPLE — Upper Respiratory Infection
+
+```
+CONSULTATION ID: GS-001
+DATE: 2026-04-15 | DURATION: 05:12
+LANGUAGE: Hindi-English code-switched
+TRANSCRIPTION CONFIDENCE: 94%
+
+--- SOAP NOTE ---
+
+SUBJECTIVE:
+- Chief complaint: "Do din se bahut khansi aa rahi hai, naak beh rahi hai" (Cough and runny nose for 2 days)
+- HPI: 2-day history of cough, rhinorrhea, sore throat with odynophagia. Fever noted by patient the previous night (not measured). No allergies reported.
+- Past history: Not discussed
+- Allergies: None reported
+
+OBJECTIVE:
+- Vitals: BP 120/80 mmHg, Temperature 99.2°F
+- Examination: Throat erythematous, tonsils slightly swollen. Chest clear, no added sounds.
+
+ASSESSMENT:
+- Working impression: Viral upper respiratory infection
+
+PLAN:
+- Medications discussed:
+  • Paracetamol 500mg three times daily — for fever
+  • Cetirizine 10mg once at night — for rhinorrhea
+  ⚠️ "Recorded from consultation — not a system recommendation"
+- Non-pharmacological: Warm saline gargle TDS, warm fluids encouraged
+- Investigations: None ordered
+- Follow-up: Return in 3 days if no improvement
+- Patient education: Antibiotics not indicated for viral infection — explained to patient
+
+--- FLAGS ---
+
+🔴 RED FLAGS: None
+⚠️ DRUG INTERACTIONS: None
+📋 MISSING: Weight not recorded
+```
+
+**Why this is a good note:** Captures the code-switched chief complaint in original language with translation. All medications attributed to the doctor's prescription, not AI suggestion. Clear follow-up criteria. Patient education about antibiotics documented (important for antimicrobial stewardship).
+
+---
+
+## SOAP NOTE 2: COMPLEX — Diabetic Patient with Chest Heaviness
+
+```
+CONSULTATION ID: GS-002
+DATE: 2026-04-15 | DURATION: 06:48
+LANGUAGE: Hindi-English code-switched
+TRANSCRIPTION CONFIDENCE: 91%
+
+--- SOAP NOTE ---
+
+SUBJECTIVE:
+- Chief complaint: "Chest mein thoda heaviness lag rahi hai, seedhi chadh-te waqt" (Chest heaviness on exertion)
+- HPI: 2-day history of exertional chest heaviness, associated with diaphoresis on exertion. Onset: yesterday morning. No radiation to left arm or jaw. Known diabetic — last fasting glucose 186 mg/dL, post-prandial 248 mg/dL. Admits to occasional non-compliance with evening Metformin dose.
+- Past history: Type 2 diabetes mellitus
+- Allergies: Not discussed
+
+OBJECTIVE:
+- Vitals: BP 148/92 mmHg (elevated), SpO2 97%
+- Examination: Heart sounds normal, no murmurs. Chest clear.
+
+ASSESSMENT:
+- Working impression: Exertional chest heaviness in known diabetic with uncontrolled sugars and elevated BP — cardiac evaluation needed
+- Differential considerations: Acute coronary syndrome must be ruled out
+
+PLAN:
+- Medications discussed:
+  • Metformin 500mg BD — continuing (compliance reinforced)
+  • Amlodipine 5mg OD — new, for hypertension
+  • Aspirin 75mg OD — new, as precautionary antiplatelet
+  ⚠️ "Recorded from consultation — not a system recommendation"
+- Investigations: ECG (immediate, same day), Troponin test
+- Follow-up: Same day after ECG results. Cardiology referral if ECG abnormal.
+- Patient education: Importance of reporting chest symptoms promptly in diabetic patients
+
+--- FLAGS ---
+
+🔴 RED FLAGS:
+- Exertional chest heaviness with sweating in diabetic patient with elevated BP — HIGH RISK for acute coronary syndrome. Immediate ECG recommended per ICMR ACS Protocol 1.
+- Fasting glucose 186, PP 248 — uncontrolled diabetes (HbA1c likely >8%)
+
+⚠️ DRUG INTERACTIONS:
+- Metformin + Aspirin: MILD — Aspirin may potentiate hypoglycemic effect of Metformin. Monitor blood glucose. (Ref: ICMR Drug Interaction DI_012)
+
+📋 MISSING:
+- HbA1c not discussed (needed for diabetes management)
+- Weight not recorded
+- Lipid profile not ordered (relevant given cardiovascular risk)
+- Smoking status not documented
+```
+
+**Why this is a good note:** Red flag surfaced prominently with ICMR citation. Drug interaction caught even though mild. Multiple missing documentation items flagged — these aren't criticisms, they're helpful reminders for the busy doctor. The assessment uses "must be ruled out" rather than diagnosing.
+
+---
+
+## SOAP NOTE 3: PEDIATRIC — Acute Otitis Media
+
+```
+CONSULTATION ID: GS-003
+DATE: 2026-04-15 | DURATION: 06:12
+LANGUAGE: Hindi-English code-switched
+TRANSCRIPTION CONFIDENCE: 93%
+
+--- SOAP NOTE ---
+
+SUBJECTIVE:
+- Chief complaint: Mother reports 3-day fever (up to 102°F), reduced on Crocin but recurring, with cough and ear-touching/crying
+- HPI: 3-day history of intermittent fever reaching 102°F, mild cough, and presumed otalgia (child pulling at ears, crying). Appetite significantly reduced — refusing food and milk.
+- Past history: Not discussed
+- Allergies: Not discussed
+
+OBJECTIVE:
+- Vitals: Temperature 101.4°F, Weight 14kg (age-appropriate)
+- Examination: Bilateral tympanic membranes red and bulging (left > right). Throat erythematous. Chest clear.
+
+ASSESSMENT:
+- Working impression: Bilateral acute otitis media
+
+PLAN:
+- Medications discussed:
+  • Amoxicillin suspension 7ml TDS × 7 days — antibiotic (per ICMR: first-line for AOM in children)
+  • Paracetamol syrup 5ml Q6H PRN for fever >100°F — continuing
+  • Chloramphenicol ear drops 3 drops each ear BD × 5 days
+  ⚠️ "Recorded from consultation — not a system recommendation"
+- Investigations: CBC if no improvement in 48 hours
+- Follow-up: 5 days, or 48 hours if no improvement
+- Patient education: Complete full antibiotic course even if symptoms improve
+
+--- FLAGS ---
+
+🔴 RED FLAGS: None
+⚠️ DRUG INTERACTIONS: None
+📋 MISSING: None
+
+--- NOTES ---
+Caregiver: Mother
+Historian reliability: Good
+```
+
+**Why this is a good note:** Pediatric context captured correctly — historian identified as mother. Symptom interpretation noted (ear-touching → presumed otalgia). Weight documented and assessed against age norms. Antibiotic stewardship principle reinforced.
+
+---
+
+## SOAP NOTE 4: OB-GYN — Heavy Menstrual Bleeding on Anticoagulation
+
+```
+CONSULTATION ID: GS-004
+DATE: 2026-04-15 | DURATION: 06:00
+LANGUAGE: English
+TRANSCRIPTION CONFIDENCE: 96%
+
+--- SOAP NOTE ---
+
+SUBJECTIVE:
+- Chief complaint: Very heavy periods for 4 months, soaking pad every 2 hours on days 1-2
+- HPI: 4-month history of menorrhagia with large clots (coin-sized), period duration increased from 4-5 to 7-8 days, worsening dysmenorrhea. No intermenstrual bleeding. On Warfarin for mechanical heart valve (replaced 3 years ago). Last INR 3.2 (within therapeutic range but at upper end).
+- Past history: Mechanical heart valve replacement (3 years ago)
+- Allergies: Not discussed
+
+OBJECTIVE:
+- Vitals: Not recorded
+- Examination: Abdomen — palpable mass, uterus approximately 14-week size. Pelvic exam — uterus bulky and irregular. No cervical tenderness.
+
+ASSESSMENT:
+- Working impression: Suspected uterine fibroids with menorrhagia, complicated by anticoagulation therapy
+
+PLAN:
+- Medications discussed:
+  • Warfarin — continuing, do not adjust dose
+  • Tranexamic acid 500mg TDS during period days only — new, with explicit caution re: anticoagulation
+  ⚠️ "Recorded from consultation — not a system recommendation"
+- Investigations: Ultrasound pelvis (urgent), CBC, repeat INR
+- Follow-up: 1 week with reports. Cardiology co-management to be arranged.
+- Referral: Cardiology consultation regarding Tranexamic acid use in anticoagulated patient
+
+--- FLAGS ---
+
+🔴 RED FLAGS:
+- Heavy menstrual bleeding in patient on Warfarin — high risk of significant anemia. Urgent hemoglobin needed.
+
+⚠️ DRUG INTERACTIONS:
+- Tranexamic acid + Warfarin: CRITICAL — Tranexamic acid is an antifibrinolytic; use in anticoagulated patients with mechanical valve carries risk of valve thrombosis and systemic thromboembolism. REQUIRES CARDIOLOGY CLEARANCE before initiating. (Ref: ICMR Drug Interaction DI_002)
+
+📋 MISSING:
+- Hemoglobin level not available (high suspicion of anemia given blood loss volume)
+- BP and vitals not recorded
+- Cardiac function assessment not updated
+```
+
+**Why this is a good note:** The CRITICAL drug interaction between Tranexamic acid and Warfarin is the teaching highlight — this is exactly the kind of flag a busy doctor might miss under time pressure. Note that the AI flags it but does NOT recommend stopping or changing the prescription — it escalates to cardiology. The doctor prescribed it deliberately; the AI's job is to surface the risk, not override clinical judgment.
+
+---
+
+## SOAP NOTE 5: ORTHOPEDIC — Elderly Hip Fracture with Multimorbidity
+
+```
+CONSULTATION ID: GS-005
+DATE: 2026-04-15 | DURATION: 04:30
+LANGUAGE: Hindi-English code-switched
+TRANSCRIPTION CONFIDENCE: 89%
+
+--- SOAP NOTE ---
+
+SUBJECTIVE:
+- Chief complaint: Daughter reports fall at home 3 hours ago, left hip pain, unable to walk
+- HPI: Fall preceded by dizziness (? pre-syncope). Landed on left side. No head injury. Left hip pain with inability to weight-bear since fall. Known hypertensive (Losartan) and diabetic (Sitagliptin, Metformin).
+- Past history: Hypertension, Type 2 diabetes mellitus
+- Allergies: Not discussed
+
+OBJECTIVE:
+- Vitals: BP 158/90 mmHg, Heart rate 88 bpm. Patient appears pale.
+- Examination: Left leg shortened and externally rotated. Unable to perform straight leg raise. Tenderness over left hip on palpation. Distal pulses intact, sensation intact in foot.
+
+ASSESSMENT:
+- Working impression: Suspected fractured neck of femur (left hip)
+- Additional concern: Pre-syncopal episode before fall — requires cardiac and postural workup to identify cause and prevent recurrence
+
+PLAN:
+- Medications discussed:
+  • Tramadol 50mg IM — acute pain management
+  • Losartan — continuing (may hold peri-operatively)
+  • Sitagliptin — continuing
+  • Metformin — continuing (may hold peri-operatively pending renal function)
+  ⚠️ "Recorded from consultation — not a system recommendation"
+- Investigations: X-ray left hip (immediate), CBC, coagulation profile, ECG, renal function, lying-standing BP, echocardiogram
+- Non-pharmacological: IV fluids, nil by mouth (anticipated surgery), IV access
+- Follow-up: Admission. Orthopedic surgeon urgent consult. Surgery target within 48 hours.
+
+--- FLAGS ---
+
+🔴 RED FLAGS:
+- Hip fracture in elderly patient — surgery within 48 hours reduces mortality per ICMR/NICE guidelines (Ref: ICMR Geriatric Protocol 10)
+- Pre-syncopal episode before fall — requires cardiac workup (ECG, echo, lying-standing BP) to identify cause and prevent recurrent falls (Ref: ICMR Geriatric Protocol 10)
+- Metformin may need to be held peri-operatively — risk of lactic acidosis if renal function impaired (Ref: ICMR Drug Interaction DI_004)
+
+⚠️ DRUG INTERACTIONS:
+- Tramadol + Metformin: MILD — Tramadol may cause unpredictable blood glucose fluctuations. Monitor glucose. (Ref: ICMR Drug Interaction DI_019)
+- Losartan — may need to hold peri-operatively depending on renal function and hemodynamic status during surgery
+
+📋 MISSING:
+- VTE prophylaxis not yet ordered (critical in hip fracture patients — should be initiated pre-operatively)
+- Bone density assessment not ordered (fragility fracture in elderly)
+- Complete medication reconciliation not yet done (may be on other medications not mentioned)
+
+--- NOTES ---
+Historian: Daughter (patient contributed some information)
+Historian reliability: Moderate (patient in pain, history partially from collateral)
+Transcription note: [UNCLEAR — physician review needed] at 02:14-02:18 — ambient noise during examination
+```
+
+**Why this is a good note:** Multiple red flags across different domains (surgical timing, fall cause, medication safety). VTE prophylaxis flagged as missing — this is a common oversight in emergency settings. Transcription confidence noted at 89% with a specific unclear segment marked. Historian reliability documented (important when history is from a relative, not the patient).
+
+---
+
+*These gold-standard notes are teaching references. Your AI-generated notes should aim for this level of completeness, clinical accuracy, and safety flagging.*
+
+*Garage Labs Technologies | AceAI Bootcamp — Cohort 40*

@@ -1,0 +1,578 @@
+[
+  {
+    "id": "consult_001",
+    "specialty": "general_medicine",
+    "duration_minutes": 5.2,
+    "language": "hindi_english_mixed",
+    "patient_age": 45,
+    "patient_gender": "M",
+    "complexity": "simple",
+    "transcript": "Doctor: Haan bataiye, kya problem hai?\nPatient: Doctor saab, do din se bahut khansi aa rahi hai, aur naak beh rahi hai. Thoda fever bhi laga tha kal raat.\nDoctor: Fever kitna tha?\nPatient: Maine check nahi kiya, but body bahut garam thi.\nDoctor: Aur gala kharab hai?\nPatient: Haan, gale mein dard hai, khaana khaate waqt bhi takleef hoti hai.\nDoctor: Koi allergy hai kisi medicine se?\nPatient: Nahi, koi allergy nahi hai.\nDoctor: Ok, let me check. Open your mouth... Throat is red, tonsils are slightly swollen. Let me check your chest... Chest is clear, no added sounds. BP is 120/80, temperature is 99.2°F.\nDoctor: This looks like a viral upper respiratory infection. I'm giving you Paracetamol 500mg thrice daily for the fever, Cetirizine 10mg once at night for the runny nose, and a warm saline gargle three times a day. If fever doesn't come down in 3 days, come back. Drink plenty of warm fluids.\nPatient: Theek hai doctor. Antibiotics nahi chahiye?\nDoctor: Nahi, abhi antibiotics ki zaroorat nahi hai. Yeh viral hai, antibiotics se kuch nahi hoga. Agar 3 din mein better nahi hote, tab dekhenge.",
+    "expected_entities": {
+      "symptoms": ["cough", "runny nose", "fever", "sore throat", "difficulty swallowing"],
+      "conditions": ["viral upper respiratory infection"],
+      "medications": ["Paracetamol 500mg TDS", "Cetirizine 10mg OD (night)"],
+      "vitals": {"BP": "120/80", "temperature": "99.2°F"},
+      "investigations": [],
+      "follow_up": "3 days if no improvement"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": [],
+      "missing": ["weight not recorded"]
+    }
+  },
+  {
+    "id": "consult_002",
+    "specialty": "general_medicine",
+    "duration_minutes": 6.8,
+    "language": "hindi_english_mixed",
+    "patient_age": 58,
+    "patient_gender": "M",
+    "complexity": "complex",
+    "transcript": "Doctor: [PATIENT], aapka sugar level check kiya tha last week?\nPatient: Haan doctor, fasting mein 186 aaya tha aur PP 248.\nDoctor: Hmm, yeh toh kaafi high hai. Aap Metformin le rahe ho regularly?\nPatient: Haan, 500mg subah shaam. Kabhi kabhi bhool jaata hoon shaam ka.\nDoctor: Aur aaj aap kyun aaye ho?\nPatient: Doctor, 2 din se chest mein thoda heaviness lag rahi hai. Zyada nahi, but seedhi chadh-te waqt aata hai. Aur thoda pasina bhi aata hai.\nDoctor: Yeh important hai. Kab se hai exactly?\nPatient: Kal subah se.\nDoctor: Baayen haath mein dard ya jaw mein dard?\nPatient: Nahi, woh toh nahi hai.\nDoctor: Ok let me examine. BP is 148/92 — that's elevated. Heart sounds are normal, no murmurs. Chest is clear. SpO2 is 97%.\nDoctor: [PATIENT], I'm concerned about the chest heaviness with exertion in a diabetic patient with elevated BP. I want to do an ECG immediately and a Troponin test. I'm also going to add Amlodipine 5mg once daily for the blood pressure.\nDoctor: Main aapko Aspirin 75mg bhi start kar raha hoon as a precaution. Continue Metformin. But pehle ECG karwao, aaj hi.\nPatient: Doctor, itna serious hai kya?\nDoctor: Serious nahi ho sakta, but careful rehna chahiye. Diabetes patients mein chest symptoms ko seriously lena chahiye. ECG normal aata hai toh tension nahi, but check karna zaroori hai. Agar ECG mein kuch aaye toh main aapko cardiologist ke paas refer karunga.",
+    "expected_entities": {
+      "symptoms": ["chest heaviness", "heaviness on exertion", "sweating on exertion"],
+      "conditions": ["diabetes mellitus (known)", "hypertension (newly elevated)"],
+      "medications": ["Metformin 500mg BD (continuing)", "Amlodipine 5mg OD (new)", "Aspirin 75mg OD (new)"],
+      "vitals": {"BP": "148/92", "SpO2": "97%"},
+      "investigations": ["ECG (immediate)", "Troponin test"],
+      "follow_up": "same day after ECG results; cardiology referral if ECG abnormal",
+      "lab_values": {"fasting_glucose": "186 mg/dL", "PP_glucose": "248 mg/dL"}
+    },
+    "expected_flags": {
+      "red_flags": ["Chest heaviness with exertion in diabetic patient with elevated BP — cardiac workup recommended per ICMR ACS protocol"],
+      "drug_interactions": ["Metformin + Aspirin: MILD — monitor for hypoglycemia; aspirin may potentiate metformin effect"],
+      "missing": ["HbA1c not discussed", "weight not recorded", "lipid profile not ordered"]
+    }
+  },
+  {
+    "id": "consult_003",
+    "specialty": "general_medicine",
+    "duration_minutes": 4.5,
+    "language": "english",
+    "patient_age": 32,
+    "patient_gender": "F",
+    "complexity": "simple",
+    "transcript": "Doctor: Good morning. What brings you in today?\nPatient: I've been having a really bad headache for the last 4 days. It's mostly on the right side, kind of throbbing.\nDoctor: Is there any nausea or vomiting with it?\nPatient: Yes, I feel nauseous when the headache is really bad. No vomiting though.\nDoctor: Any sensitivity to light or sound?\nPatient: Light, yes. I have to close the curtains.\nDoctor: Any visual changes? Like flashing lights before the headache starts?\nPatient: Actually yes, sometimes I see zigzag lines about 20 minutes before the headache hits.\nDoctor: That's helpful. Any history of migraines in your family?\nPatient: My mother has migraines.\nDoctor: Any recent stress, sleep changes, or dietary triggers you've noticed?\nPatient: I've been working very late, maybe sleeping only 4-5 hours.\nDoctor: Let me check you quickly. BP is 118/76, that's fine. Neurological exam is normal — pupils equal and reactive, no focal deficits.\nDoctor: This presentation is consistent with migraine with aura. I'm starting you on Sumatriptan 50mg — take it at the first sign of a headache. For prevention since you're getting frequent episodes, let's try Propranolol 20mg twice daily. And we need to address the sleep — that's likely a major trigger.\nPatient: Is it something serious?\nDoctor: The aura can be concerning if it's new, but your neuro exam is normal. If the pattern changes — if auras last longer than 60 minutes, or you get weakness or speech problems — come in immediately. Otherwise, follow up in 2 weeks.",
+    "expected_entities": {
+      "symptoms": ["headache (right-sided, throbbing, 4 days)", "nausea", "photophobia", "visual aura (zigzag lines)"],
+      "conditions": ["migraine with aura"],
+      "medications": ["Sumatriptan 50mg PRN (new)", "Propranolol 20mg BD (new)"],
+      "vitals": {"BP": "118/76"},
+      "investigations": [],
+      "follow_up": "2 weeks"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": [],
+      "missing": ["weight not recorded", "menstrual history not discussed (relevant for migraine in females)"]
+    }
+  },
+  {
+    "id": "consult_004",
+    "specialty": "general_medicine",
+    "duration_minutes": 5.5,
+    "language": "hindi_english_mixed",
+    "patient_age": 62,
+    "patient_gender": "F",
+    "complexity": "moderate",
+    "transcript": "Doctor: Namaste aunty, kaisi hain aap?\nPatient: Doctor, ghutne mein bahut dard ho raha hai. Subah uthte waqt bahut stiffness rehti hai, 20-25 minute lagta hai theek hone mein.\nDoctor: Dono ghutne mein ya ek mein?\nPatient: Dono mein, but left zyada hai.\nDoctor: Kab se hai yeh?\nPatient: 6 mahine se dheere dheere badh raha hai. Pehle sirf seedhi pe hota tha, ab toh chalna bhi mushkil hai.\nDoctor: Koi dawai le rahi hain abhi?\nPatient: Diclofenac leti hoon jab bahut dard hota hai. Mahine mein 10-12 tablets kha leti hoon.\nDoctor: Aur aapko BP ki dawai bhi chal rahi hai na?\nPatient: Haan, Telmisartan 40mg aur Hydrochlorothiazide 12.5mg.\nDoctor: Stomach mein koi problem? Acidity?\nPatient: Haan, thodi acidity rehti hai.\nDoctor: Let me examine. Left knee has crepitus, mild swelling, range of motion limited to about 100 degrees. Right knee similar but less severe. BP today is 138/85.\nDoctor: Aunty, this is osteoarthritis. Diclofenac itna regular lena theek nahi hai, especially with your BP medicines and the acidity. I'm switching you to Acetaminophen 650mg three times daily as your regular painkiller. And I'm adding Pantoprazole 40mg before breakfast for the acidity. I also want an X-ray of both knees.\nDoctor: Physiotherapy is very important — I'll refer you. And please reduce the Diclofenac — only take it if the pain is really unbearable, maximum twice a week.",
+    "expected_entities": {
+      "symptoms": ["bilateral knee pain (left worse)", "morning stiffness 20-25 min", "difficulty walking", "acidity"],
+      "conditions": ["osteoarthritis (bilateral knees)", "hypertension (known)"],
+      "medications": ["Acetaminophen 650mg TDS (new)", "Pantoprazole 40mg OD before breakfast (new)", "Telmisartan 40mg (continuing)", "Hydrochlorothiazide 12.5mg (continuing)", "Diclofenac PRN max 2x/week (reduced)"],
+      "vitals": {"BP": "138/85"},
+      "investigations": ["X-ray bilateral knees"],
+      "follow_up": "after X-ray results + physiotherapy referral"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": ["Diclofenac + Hydrochlorothiazide: MODERATE — NSAIDs reduce diuretic efficacy and increase renal risk", "Diclofenac + Telmisartan: MODERATE — combined use increases risk of acute kidney injury"],
+      "missing": ["weight/BMI not recorded (relevant for OA management)"]
+    }
+  },
+  {
+    "id": "consult_005",
+    "specialty": "general_medicine",
+    "duration_minutes": 3.8,
+    "language": "english",
+    "patient_age": 28,
+    "patient_gender": "M",
+    "complexity": "simple",
+    "transcript": "Doctor: What's the issue?\nPatient: I've had loose motions since yesterday morning. Maybe 6-7 times. Watery.\nDoctor: Any blood or mucus in the stool?\nPatient: No blood, no mucus.\nDoctor: Vomiting?\nPatient: Once yesterday, nothing since then.\nDoctor: Any fever?\nPatient: Mild, I felt warm but didn't check.\nDoctor: Did you eat anything outside yesterday or day before?\nPatient: Had street food two days back — pani puri.\nDoctor: Any one else who ate with you having the same problem?\nPatient: Actually yes, my friend also has loose motions.\nDoctor: OK. Temperature is 99.8°F, BP is 110/70, heart rate is 92. Abdomen is soft, mild tenderness in the lower abdomen, no rigidity.\nDoctor: This is most likely acute gastroenteritis from the street food. I'm giving you ORS packets — dissolve in 1 litre of water, sip throughout the day. Racecadotril 100mg thrice daily for 3 days. Bland diet — khichdi, curd rice, bananas. Avoid spicy, oily food for 3 days. If you see blood in stool or fever goes above 101, come back immediately.\nPatient: Should I take Norfloxacin?\nDoctor: No antibiotics needed for now. This is likely viral or mild bacterial — will resolve with hydration. Antibiotics only if it doesn't improve in 48 hours.",
+    "expected_entities": {
+      "symptoms": ["loose motions (6-7 times, watery)", "vomiting (once)", "mild fever"],
+      "conditions": ["acute gastroenteritis"],
+      "medications": ["ORS (1L water, continuous)", "Racecadotril 100mg TDS x 3 days"],
+      "vitals": {"temperature": "99.8°F", "BP": "110/70", "heart_rate": "92"},
+      "investigations": [],
+      "follow_up": "return if blood in stool or fever >101°F, or no improvement in 48 hours"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": [],
+      "missing": []
+    }
+  },
+  {
+    "id": "consult_006",
+    "specialty": "pediatrics",
+    "duration_minutes": 6.2,
+    "language": "hindi_english_mixed",
+    "patient_age": 4,
+    "patient_gender": "F",
+    "complexity": "moderate",
+    "transcript": "Mother: Doctor, meri beti ko 3 din se bukhar aa raha hai. 102 tak jaata hai. Crocin deti hoon toh kam hota hai, phir wapas aa jaata hai.\nDoctor: Aur koi symptoms hain? Khansi, sardi, loose motions?\nMother: Haan, thodi khansi hai. Aur kaan mein haath lagaati rehti hai, roti hai.\nDoctor: Kaan mein dard ho sakta hai. Khaana kha rahi hai?\nMother: Bahut kam kha rahi hai, dudh bhi nahi pi rahi.\nDoctor: Urine mein koi problem? Zyada bar aa rahi hai ya rote hue?\nMother: Nahi, woh toh normal hai.\nDoctor: Let me examine her. Temperature is 101.4°F. Both eardrums are red and bulging — left more than right. This is bilateral acute otitis media. Throat is also red. Chest is clear.\nDoctor: Weight is 14kg, which is appropriate for her age.\nDoctor: I'm starting Amoxicillin suspension — 7ml three times daily for 7 days. Continue Paracetamol syrup 5ml every 6 hours when fever is above 100. Ear drops — Chloramphenicol ear drops, 3 drops in each ear twice daily for 5 days.\nDoctor: Important — pura course complete karna hai antibiotics ka, beech mein mat band karna even if she feels better. Come back in 5 days for follow-up, or earlier if fever doesn't come down in 48 hours or she seems more irritable.\nMother: Koi test karwana padega?\nDoctor: Abhi nahi, agar 48 hours mein fever kam nahi hota toh blood test karwayenge.",
+    "expected_entities": {
+      "symptoms": ["fever (3 days, up to 102°F)", "cough", "ear pain (touching ears, crying)", "decreased appetite"],
+      "conditions": ["bilateral acute otitis media"],
+      "medications": ["Amoxicillin suspension 7ml TDS x 7 days", "Paracetamol syrup 5ml Q6H PRN (fever >100°F)", "Chloramphenicol ear drops 3 drops each ear BD x 5 days"],
+      "vitals": {"temperature": "101.4°F", "weight": "14kg"},
+      "investigations": ["CBC if no improvement in 48 hours"],
+      "follow_up": "5 days, or 48 hours if no improvement"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": [],
+      "missing": []
+    }
+  },
+  {
+    "id": "consult_007",
+    "specialty": "pediatrics",
+    "duration_minutes": 7.1,
+    "language": "english",
+    "patient_age": 8,
+    "patient_gender": "M",
+    "complexity": "complex",
+    "transcript": "Mother: Doctor, my son has been wheezing for the last 2 days. He had a cold last week and now he can't stop coughing, especially at night. He's using his inhaler but it's not helping much.\nDoctor: Which inhaler is he using?\nMother: Salbutamol, 2 puffs. He's been using it 4-5 times a day.\nDoctor: Has he had asthma attacks before?\nMother: Yes, he was diagnosed with asthma at age 5. Usually controlled with the Salbutamol and Budesonide inhaler.\nDoctor: Is he taking the Budesonide regularly?\nMother: Honestly, we stopped it about a month ago because he seemed fine.\nDoctor: That's likely why this is worse. The Budesonide is the preventive — stopping it makes him vulnerable when a trigger like a cold comes along.\nDoctor: Let me check. SpO2 is 94% — that's borderline. Respiratory rate is 28, which is elevated. I can hear bilateral wheezing, more on expiration. Using accessory muscles slightly. No cyanosis.\nDoctor: This is a moderate acute exacerbation. I'm going to nebulize him here — Salbutamol 2.5mg plus Ipratropium 0.5mg. Let's see how he responds. I'm also starting oral Prednisolone 20mg once daily for 5 days. And we must restart the Budesonide 200mcg twice daily — this is not optional.\nDoctor: After nebulization I'll recheck. If SpO2 doesn't come above 95% we may need to consider hospital admission.\nMother: Should we do any tests?\nDoctor: Let's see how he responds to the nebulization first. If he's not improving, we'll do a chest X-ray and blood gas.",
+    "expected_entities": {
+      "symptoms": ["wheezing (2 days)", "cough (nocturnal)", "preceding upper respiratory infection"],
+      "conditions": ["asthma (known, diagnosed age 5)", "moderate acute exacerbation"],
+      "medications": ["Salbutamol nebulization 2.5mg (in-clinic)", "Ipratropium nebulization 0.5mg (in-clinic)", "Prednisolone 20mg OD x 5 days (new)", "Budesonide 200mcg BD (restarted — was stopped 1 month ago)", "Salbutamol inhaler PRN (continuing)"],
+      "vitals": {"SpO2": "94%", "respiratory_rate": "28"},
+      "investigations": ["Chest X-ray and blood gas if no improvement post-nebulization"],
+      "follow_up": "post-nebulization assessment; hospital admission if SpO2 <95%"
+    },
+    "expected_flags": {
+      "red_flags": ["SpO2 94% in pediatric asthma patient — borderline for hospital admission per ICMR pediatric asthma protocol"],
+      "drug_interactions": [],
+      "missing": ["peak flow measurement not done", "asthma action plan not reviewed"]
+    }
+  },
+  {
+    "id": "consult_008",
+    "specialty": "pediatrics",
+    "duration_minutes": 4.8,
+    "language": "hindi_english_mixed",
+    "patient_age": 2,
+    "patient_gender": "M",
+    "complexity": "moderate",
+    "transcript": "Mother: Doctor, baccha 2 din se bahut zyada ro raha hai, dudh nahi pi raha. Potti bhi 8-9 baar ho gayi aaj.\nDoctor: Potti mein khoon ya mucus hai?\nMother: Nahi, paani jaisi hai.\nDoctor: Ulti?\nMother: Haan, 3 baar ulti hui subah se.\nDoctor: Peshab kar raha hai normally?\nMother: Aaj kam kiya hai, sirf 2 baar.\nDoctor: Yeh important hai — less urine means dehydration ho rahi hai. Let me check.\nDoctor: Weight today is 10.5kg. Last visit it was 11.2kg — so he's lost 700 grams. Temperature is 100.8°F. Skin turgor is slightly reduced. Anterior fontanelle is not sunken. Mucous membranes are dry. Eyes are slightly sunken.\nDoctor: This is acute gastroenteritis with moderate dehydration. We need to start ORS immediately. I'm giving you ORS sachets — dissolve one in 200ml water, give small sips every 5 minutes. If he vomits, wait 10 minutes and restart.\nDoctor: I'm also giving Ondansetron dissolvable tablet 2mg — one now, to stop the vomiting so he can keep the ORS down. Zinc syrup 10mg once daily for 14 days.\nDoctor: Main point — agar next 4 hours mein urine nahi karta, ya ro raha hai bina aansoo ke, ya bahut susti aati hai, toh immediately hospital le aana. Admission ki zaroorat pad sakti hai IV fluids ke liye.\nMother: Koi antibiotic?\nDoctor: No antibiotics. This is most likely viral. Antibiotics will make it worse. Focus on ORS.",
+    "expected_entities": {
+      "symptoms": ["excessive crying", "refusal to feed", "watery diarrhea (8-9 times)", "vomiting (3 times)", "decreased urine output"],
+      "conditions": ["acute gastroenteritis", "moderate dehydration"],
+      "medications": ["ORS (200ml, small sips Q5min)", "Ondansetron 2mg dissolvable (single dose)", "Zinc syrup 10mg OD x 14 days"],
+      "vitals": {"weight": "10.5kg (previous 11.2kg)", "temperature": "100.8°F"},
+      "investigations": [],
+      "follow_up": "hospital immediately if no urine in 4 hours, tearless crying, or excessive lethargy"
+    },
+    "expected_flags": {
+      "red_flags": ["Weight loss 6.25% (700g/11.2kg) — moderate dehydration in toddler requires close monitoring; hospital admission if no improvement in 4 hours"],
+      "drug_interactions": [],
+      "missing": []
+    }
+  },
+  {
+    "id": "consult_009",
+    "specialty": "pediatrics",
+    "duration_minutes": 5.0,
+    "language": "english",
+    "patient_age": 6,
+    "patient_gender": "F",
+    "complexity": "simple",
+    "transcript": "Mother: She's been scratching her head a lot and I found some white things in her hair.\nDoctor: How long has this been going on?\nMother: I noticed about a week ago but she says it's been itchy for longer.\nDoctor: Any other kids in school have the same problem?\nMother: Her teacher mentioned a few kids have had lice.\nDoctor: Let me look... Yes, I can see nits attached to the hair shafts and a few live lice. The scalp has some scratch marks but no infection.\nDoctor: This is pediculosis — head lice. I'm prescribing Permethrin 1% lotion. Apply it to dry hair, leave for 10 minutes, then wash off. Repeat in 7 days. Use a fine-tooth nit comb daily after applying conditioner.\nDoctor: Important — wash all bedding and towels in hot water. Check other family members. She can go back to school after the first treatment.\nMother: Is it because of hygiene?\nDoctor: No, lice have nothing to do with cleanliness. They spread through head-to-head contact, which is common in young children at school.",
+    "expected_entities": {
+      "symptoms": ["scalp itching", "nits visible", "live lice present", "scratch marks on scalp"],
+      "conditions": ["pediculosis capitis (head lice)"],
+      "medications": ["Permethrin 1% lotion (apply to dry hair, 10 min, repeat day 7)"],
+      "vitals": {},
+      "investigations": [],
+      "follow_up": "repeat treatment in 7 days"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": [],
+      "missing": []
+    }
+  },
+  {
+    "id": "consult_010",
+    "specialty": "pediatrics",
+    "duration_minutes": 5.5,
+    "language": "hindi_english_mixed",
+    "patient_age": 10,
+    "patient_gender": "M",
+    "complexity": "simple",
+    "transcript": "Father: Doctor, mere bete ko kuch din se pet mein dard ho raha hai. School se roz complain aati hai.\nDoctor: Kahan dard hota hai? Pet mein konsi jagah?\nFather: Navel ke around.\nDoctor: Kab hota hai — khaane ke baad, khaane se pehle, ya koi specific time?\nFather: Subah school jaane se pehle mostly. Weekend pe nahi hota.\nDoctor: Interesting. Ulti ya loose motions?\nFather: Nahi.\nDoctor: School mein koi problem? Naye school mein aaya hai ya koi tension?\nFather: Actually, 2 mahine pehle school change hua hai. Purane friends miss karta hai.\nDoctor: Let me examine. Abdomen is soft, non-tender actually on examination. No masses, no organomegaly. Bowel sounds normal.\nDoctor: This is most likely functional abdominal pain — very common at this age, especially with school changes and stress. The periumbilical location and the pattern of weekday-only episodes support this.\nDoctor: No medication needed. What will help is talking to him about the school change, making sure he has activities he enjoys. Regular meals, good sleep. If the pain wakes him up at night, or he loses weight, or there's blood in stool, then we investigate. Follow up in 4 weeks.\nFather: Koi test nahi karwana chahiye?\nDoctor: Abhi nahi. If it persists beyond 4 weeks, we'll do a stool test and blood work. But right now the pattern is classic functional pain.",
+    "expected_entities": {
+      "symptoms": ["recurrent abdominal pain (periumbilical)", "weekday pattern", "school-related stress"],
+      "conditions": ["functional abdominal pain"],
+      "medications": [],
+      "vitals": {},
+      "investigations": ["stool test + CBC if persists beyond 4 weeks"],
+      "follow_up": "4 weeks, or earlier if nighttime pain / weight loss / blood in stool"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": [],
+      "missing": ["weight not recorded (baseline for monitoring)"]
+    }
+  },
+  {
+    "id": "consult_011",
+    "specialty": "obstetrics_gynecology",
+    "duration_minutes": 7.5,
+    "language": "hindi_english_mixed",
+    "patient_age": 28,
+    "patient_gender": "F",
+    "complexity": "moderate",
+    "transcript": "Patient: Doctor, mujhe 2 periods miss ho gaye hain. Home test positive aaya.\nDoctor: Congratulations! Last period kab aaya tha?\nPatient: March 2 ko.\nDoctor: Toh aap approximately 6-7 weeks pregnant hain. Koi symptoms? Morning sickness?\nPatient: Haan, subah bahut nausea hoti hai, kabhi kabhi ulti bhi. Aur bahut thakan rehti hai.\nDoctor: Yeh normal hai first trimester mein. Koi bleeding ya spotting?\nPatient: Thodi si spotting hui thi 3 din pehle, but ab band hai.\nDoctor: Ok, that needs to be monitored. Koi previous pregnancies?\nPatient: Nahi, pehli baar hai.\nDoctor: Any medical conditions? Thyroid, diabetes, BP?\nPatient: Thyroid hai — Levothyroxine 50mcg le rahi hoon.\nDoctor: Good that you're already on treatment. We'll need to check your TSH — thyroid control is very important in pregnancy. It often needs dose adjustment.\nDoctor: Let me examine. BP is 110/72, weight is 58kg. Uterus is not palpable yet, which is normal at this stage.\nDoctor: I'm ordering: ultrasound to confirm viability and dates, TSH level, CBC, blood group and Rh, random blood sugar, urine routine. Start Folic acid 5mg daily and Iron-Folic acid tablet from the second trimester.\nDoctor: For the nausea — small frequent meals, avoid oily food, ginger tea can help. If it's unbearable, I can prescribe Doxylamine 10mg at night.\nDoctor: Come back in 2 weeks with the ultrasound and blood reports. And if any heavy bleeding or severe cramping, come to emergency immediately.",
+    "expected_entities": {
+      "symptoms": ["amenorrhea (2 missed periods)", "positive pregnancy test", "morning sickness (nausea, vomiting)", "fatigue", "spotting (3 days ago, resolved)"],
+      "conditions": ["pregnancy (~6-7 weeks, primigravida)", "hypothyroidism (known, on treatment)"],
+      "medications": ["Levothyroxine 50mcg (continuing — dose may need adjustment)", "Folic acid 5mg OD (new)", "Doxylamine 10mg ON PRN (if nausea intolerable)"],
+      "vitals": {"BP": "110/72", "weight": "58kg"},
+      "investigations": ["ultrasound (viability + dating)", "TSH", "CBC", "blood group + Rh", "random blood sugar", "urine routine"],
+      "follow_up": "2 weeks with reports; emergency if heavy bleeding or severe cramping"
+    },
+    "expected_flags": {
+      "red_flags": ["First trimester spotting — requires ultrasound to rule out ectopic/threatened abortion"],
+      "drug_interactions": [],
+      "missing": ["rubella immunity status not discussed", "partner blood group not checked"]
+    }
+  },
+  {
+    "id": "consult_012",
+    "specialty": "obstetrics_gynecology",
+    "duration_minutes": 6.0,
+    "language": "english",
+    "patient_age": 35,
+    "patient_gender": "F",
+    "complexity": "complex",
+    "transcript": "Patient: Doctor, I've been having very heavy periods for the last 4 months. I'm soaking through a pad every 2 hours on the first two days.\nDoctor: Any clots?\nPatient: Yes, large clots. Sometimes the size of a 2-rupee coin.\nDoctor: How many days does your period last now?\nPatient: It used to be 4-5 days, now it's 7-8 days.\nDoctor: Any pain with the periods?\nPatient: Yes, cramping is much worse than before.\nDoctor: Any bleeding between periods?\nPatient: No, just during.\nDoctor: Are you on any medication currently?\nPatient: I take Warfarin for a mechanical heart valve — that was replaced 3 years ago.\nDoctor: That's very relevant. What's your last INR?\nPatient: It was 3.2 last month.\nDoctor: That's at the higher end of the therapeutic range. The Warfarin could be contributing to the heavy bleeding. Let me examine you.\nDoctor: Abdomen shows a palpable mass — uterus is about 14-week size. On pelvic exam, uterus is bulky and irregular. No cervical tenderness.\nDoctor: I suspect uterine fibroids. I'm ordering an ultrasound pelvis urgently, CBC to check for anemia given the blood loss, and a repeat INR. I'm also adding Tranexamic acid 500mg three times daily during your period days only — this will reduce bleeding. But I need to be very careful because of the Warfarin — Tranexamic acid in patients on anticoagulants carries a clot risk.\nDoctor: I'm going to discuss your case with the cardiologist before finalising. Don't change your Warfarin dose. Come back in one week with the reports.\nPatient: Could I need surgery?\nDoctor: Let's see the ultrasound first. If it's fibroids of a certain size or location, surgery may be an option, but we need the full picture.",
+    "expected_entities": {
+      "symptoms": ["menorrhagia (soaking pad Q2H)", "large clots", "prolonged periods (7-8 days)", "dysmenorrhea (worsening)"],
+      "conditions": ["suspected uterine fibroids", "mechanical heart valve (3 years post-replacement)", "on anticoagulation"],
+      "medications": ["Warfarin (continuing — do not adjust)", "Tranexamic acid 500mg TDS during period days (new — with caution)"],
+      "vitals": {},
+      "investigations": ["ultrasound pelvis (urgent)", "CBC", "repeat INR"],
+      "follow_up": "1 week with reports; cardiology co-management"
+    },
+    "expected_flags": {
+      "red_flags": ["Heavy menstrual bleeding in anticoagulated patient — risk of significant anemia"],
+      "drug_interactions": ["Tranexamic acid + Warfarin: CRITICAL — Tranexamic acid is an antifibrinolytic; use in anticoagulated patients carries risk of thromboembolism. Requires cardiology clearance."],
+      "missing": ["hemoglobin level not available (high suspicion of anemia)", "cardiac function assessment not updated"]
+    }
+  },
+  {
+    "id": "consult_013",
+    "specialty": "obstetrics_gynecology",
+    "duration_minutes": 5.0,
+    "language": "hindi_english_mixed",
+    "patient_age": 24,
+    "patient_gender": "F",
+    "complexity": "simple",
+    "transcript": "Patient: Doctor, mujhe UTI ho gayi hai lagta hai. Peshab mein jalan hai aur baar baar aa rahi hai.\nDoctor: Kab se hai?\nPatient: Kal se. Bahut uncomfortable hai.\nDoctor: Peshab mein khoon?\nPatient: Nahi.\nDoctor: Fever, back pain, ya kamar mein dard?\nPatient: Nahi, bas jalan aur urgency hai.\nDoctor: Koi vaginal discharge?\nPatient: Normal hai, kuch alag nahi.\nDoctor: Sexually active hain?\nPatient: Haan.\nDoctor: Last period kab aaya?\nPatient: 10 din pehle, normal tha.\nDoctor: Pehle kabhi UTI hua hai?\nPatient: Nahi, pehli baar.\nDoctor: Let me check. Temperature normal. No costovertebral angle tenderness. Lower abdomen slightly tender.\nDoctor: This sounds like uncomplicated lower urinary tract infection. I'm prescribing Nitrofurantoin 100mg twice daily for 5 days. Plenty of water — at least 3 litres a day. Cranberry juice can help.\nDoctor: I'm also sending a urine culture before you start the antibiotic — give the sample in the lab downstairs now. If the culture shows a different organism, we may change the antibiotic.\nDoctor: Agar fever aata hai ya back pain hota hai, immediately aana — that would mean the infection has moved to the kidneys.",
+    "expected_entities": {
+      "symptoms": ["dysuria", "urinary frequency", "urgency"],
+      "conditions": ["uncomplicated lower UTI"],
+      "medications": ["Nitrofurantoin 100mg BD x 5 days"],
+      "vitals": {"temperature": "normal"},
+      "investigations": ["urine culture (pre-antibiotic)"],
+      "follow_up": "return if fever or back pain develops"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": [],
+      "missing": []
+    }
+  },
+  {
+    "id": "consult_014",
+    "specialty": "obstetrics_gynecology",
+    "duration_minutes": 6.8,
+    "language": "english",
+    "patient_age": 30,
+    "patient_gender": "F",
+    "complexity": "moderate",
+    "transcript": "Patient: Doctor, my husband and I have been trying to conceive for about 14 months now. Nothing is happening.\nDoctor: I understand that's frustrating. Let's go through some things. Are your periods regular?\nPatient: Yes, every 28-30 days.\nDoctor: Any pain with periods or between periods?\nPatient: Slight cramping during periods but nothing severe.\nDoctor: Have you or your husband had any fertility tests before?\nPatient: No, this is the first time we're consulting a specialist.\nDoctor: Any medical conditions?\nPatient: I have PCOS — it was diagnosed when I was 22 but my doctor said it was mild.\nDoctor: Are you on Metformin or any medication for PCOS?\nPatient: No, I was told it wasn't needed since my periods are regular.\nDoctor: What about your husband? Any health issues?\nPatient: He's healthy. No issues that he knows of.\nDoctor: Let me examine. BMI is 27.2 — slightly overweight. Thyroid is not enlarged. Mild acne. No hirsutism. Pelvic exam is normal.\nDoctor: I'm going to order a workup for both of you. For you: Day 2 FSH and LH levels, AMH, TSH, prolactin, and a transvaginal ultrasound on Day 2-3 of your cycle. For your husband: semen analysis — he needs to abstain for 3-5 days before the test.\nDoctor: The PCOS could be a factor even with regular cycles — it can affect egg quality and ovulation regularity. Once we have the results, we'll plan the next steps. Lifestyle-wise, even a 5% weight loss can significantly improve fertility outcomes in PCOS.\nPatient: How long before we know if we need IVF or something?\nDoctor: Let's get the basics first. Many couples conceive with simple interventions — timed intercourse, sometimes Letrozole for ovulation support. IVF is many steps away.",
+    "expected_entities": {
+      "symptoms": ["infertility (14 months, primary)"],
+      "conditions": ["PCOS (known, mild, diagnosed age 22)"],
+      "medications": [],
+      "vitals": {"BMI": "27.2"},
+      "investigations": ["Day 2 FSH", "Day 2 LH", "AMH", "TSH", "prolactin", "transvaginal ultrasound Day 2-3", "semen analysis (husband, 3-5 days abstinence)"],
+      "follow_up": "with all reports"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": [],
+      "missing": ["husband's age not recorded", "rubella immunity not checked (pre-conception)"]
+    }
+  },
+  {
+    "id": "consult_015",
+    "specialty": "obstetrics_gynecology",
+    "duration_minutes": 5.3,
+    "language": "hindi_english_mixed",
+    "patient_age": 42,
+    "patient_gender": "F",
+    "complexity": "moderate",
+    "transcript": "Patient: Doctor, mujhe hot flashes aa rahe hain raat ko. Neend nahi aati. Aur periods bhi irregular ho gaye hain — kabhi 2 mahine mein aate hain, kabhi 3 weeks mein.\nDoctor: Kab se hai yeh sab?\nPatient: 6 mahine se gradually.\nDoctor: Night sweats ke saath mood swings bhi hain?\nPatient: Bahut zyada irritable ho gayi hoon. Pati bhi kehte hain.\nDoctor: Vaginal dryness?\nPatient: Thodi si.\nDoctor: Koi other medical conditions?\nPatient: BP hai — Amlodipine 5mg le rahi hoon. Aur thoda cholesterol bhi high tha last year.\nDoctor: Family history mein breast cancer ya ovarian cancer?\nPatient: Nahi.\nDoctor: OK. BP today is 132/82. BMI is 25.8.\nDoctor: Yeh perimenopausal symptoms lag rahe hain — very normal at 42. I'm ordering FSH and Estradiol levels to confirm. Also a lipid profile since your cholesterol was high, and a mammogram — routine at your age.\nDoctor: For the hot flashes and sleep, I'm starting low-dose Venlafaxine 37.5mg at bedtime. It's not a hormone — it's an SNRI that helps with hot flashes and mood. For the vaginal dryness, use a vaginal moisturizer — available over the counter.\nDoctor: Agar symptoms bahut severe hain aur yeh dawai kaam nahi karti, toh we can discuss hormone therapy later. But first let's try this for 4 weeks.\nDoctor: Exercise karein — 30 minutes daily walking. It genuinely helps with mood and sleep in perimenopause.",
+    "expected_entities": {
+      "symptoms": ["hot flashes (nocturnal)", "insomnia", "irregular periods (6 months)", "mood changes (irritability)", "vaginal dryness"],
+      "conditions": ["perimenopause", "hypertension (known)", "hyperlipidemia (history)"],
+      "medications": ["Amlodipine 5mg (continuing)", "Venlafaxine 37.5mg ON (new)"],
+      "vitals": {"BP": "132/82", "BMI": "25.8"},
+      "investigations": ["FSH", "Estradiol", "lipid profile", "mammogram"],
+      "follow_up": "4 weeks"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": ["Venlafaxine + Amlodipine: MILD — monitor BP; Venlafaxine can slightly increase blood pressure"],
+      "missing": ["bone density screening not discussed (relevant in perimenopause)"]
+    }
+  },
+  {
+    "id": "consult_016",
+    "specialty": "dermatology",
+    "duration_minutes": 4.2,
+    "language": "english",
+    "patient_age": 22,
+    "patient_gender": "M",
+    "complexity": "simple",
+    "transcript": "Patient: Doctor, I've had these red, itchy patches on my elbows and knees for about 2 months. They're getting worse.\nDoctor: Are they scaly? Silvery-white scales?\nPatient: Yes, exactly. And if I scratch them, they bleed a little.\nDoctor: Any family history of psoriasis or skin conditions?\nPatient: My father had something similar.\nDoctor: Any joint pain or stiffness?\nPatient: No.\nDoctor: Any recent stress or illness before this started?\nPatient: I had a throat infection about 3 weeks before the patches appeared.\nDoctor: That's relevant — strep throat can trigger this. Let me look. These are well-demarcated, erythematous plaques with silvery scales on extensor surfaces. Auspitz sign positive. Nails look normal.\nDoctor: This is plaque psoriasis. I'm starting you on Clobetasol propionate 0.05% ointment — apply thin layer twice daily on the patches only, for 2 weeks. Then we switch to Calcipotriol ointment for maintenance. Use a coal tar shampoo if you notice any scalp involvement.\nDoctor: This is a chronic condition — it's manageable but tends to come and go. Moisturize regularly, avoid scratching. Stress management is important. Come back in 2 weeks.\nPatient: Will it ever go away completely?\nDoctor: It can go into long remissions. The key is good skin care and trigger avoidance. We have good treatment options.",
+    "expected_entities": {
+      "symptoms": ["red itchy patches (elbows, knees)", "silvery scales", "bleeding on scratching (Auspitz positive)"],
+      "conditions": ["plaque psoriasis"],
+      "medications": ["Clobetasol 0.05% ointment BD x 2 weeks", "Calcipotriol ointment (maintenance after 2 weeks)"],
+      "vitals": {},
+      "investigations": [],
+      "follow_up": "2 weeks"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": [],
+      "missing": ["PASI score not documented", "throat culture not done (possible post-streptococcal trigger)"]
+    }
+  },
+  {
+    "id": "consult_017",
+    "specialty": "dermatology",
+    "duration_minutes": 5.8,
+    "language": "hindi_english_mixed",
+    "patient_age": 50,
+    "patient_gender": "M",
+    "complexity": "complex",
+    "transcript": "Patient: Doctor, yeh til badal raha hai lagta hai. Pehle chota tha, ab bada ho gaya hai aur rang bhi alag ho gaya hai.\nDoctor: Kab se notice kar rahe hain?\nPatient: 3-4 mahine se.\nDoctor: Khujli ya dard?\nPatient: Kabhi kabhi khujli hoti hai. Aur ek baar thoda khoon aaya tha.\nDoctor: Kahan hai yeh?\nPatient: Right shoulder pe.\nDoctor: Sun exposure zyada hai? Outdoor work?\nPatient: Haan, construction supervision karta hoon, 15 saal se dhoop mein rehta hoon.\nDoctor: Family mein kisi ko skin cancer?\nPatient: Nahi pata.\nDoctor: Let me examine with the dermatoscope... This lesion is approximately 12mm, asymmetric borders, color variation — dark brown and black areas with some reddish patches. Irregular edges. This is concerning.\nDoctor: I'm applying the ABCDE criteria: Asymmetry — yes. Border irregularity — yes. Color variation — yes. Diameter over 6mm — yes, it's 12mm. Evolving — yes, you've noticed changes.\nDoctor: Main aapko honestly batata hoon — yeh malignant melanoma ho sakta hai. I need to do an urgent excision biopsy. I'm referring you to a surgical dermatologist — Dr. Patel at City Hospital — for the biopsy this week.\nDoctor: Please don't scratch it, don't apply anything on it. Take photos today for documentation. The biopsy result will take 5-7 days and that will tell us the exact type and depth.\nPatient: Bahut serious hai kya doctor?\nDoctor: We'll know after the biopsy. Early detection is key, and you've come at the right time by noticing the changes. Let's not waste time — I'm calling Dr. Patel's office now to get you an appointment.",
+    "expected_entities": {
+      "symptoms": ["changing mole (size increase, color change)", "itching", "bleeding from lesion"],
+      "conditions": ["suspected malignant melanoma"],
+      "medications": [],
+      "vitals": {},
+      "investigations": ["excision biopsy (urgent referral)"],
+      "follow_up": "surgical dermatology referral this week; biopsy result in 5-7 days"
+    },
+    "expected_flags": {
+      "red_flags": ["ABCDE criteria positive for melanoma — A: asymmetric, B: irregular borders, C: color variation, D: >6mm (12mm), E: evolving. Urgent biopsy required."],
+      "drug_interactions": [],
+      "missing": ["full skin survey not documented", "lymph node examination not mentioned"]
+    }
+  },
+  {
+    "id": "consult_018",
+    "specialty": "dermatology",
+    "duration_minutes": 4.5,
+    "language": "english",
+    "patient_age": 17,
+    "patient_gender": "F",
+    "complexity": "simple",
+    "transcript": "Patient: My acne has gotten really bad in the last few months. I have these painful bumps on my chin and jawline.\nDoctor: Are they like deep, under-the-skin bumps?\nPatient: Yes, some are. And some have white heads.\nDoctor: How long has it been this bad?\nPatient: Maybe 4-5 months. I used to just get a few pimples before.\nDoctor: Have you tried anything?\nPatient: Benzoyl peroxide wash from the pharmacy. It didn't really help.\nDoctor: Any relation to your periods?\nPatient: Actually, it does get worse before my period.\nDoctor: Are you on any medications?\nPatient: No.\nDoctor: Let me look. You have comedones, inflammatory papules, and a few nodules on the chin, jawline, and lower cheeks. Forehead is relatively clear. No scarring yet.\nDoctor: This is moderate acne — mixed comedonal and inflammatory, with a hormonal pattern given the jawline distribution and menstrual flare. I'm starting a combination approach: Adapalene 0.1% gel at night on the affected areas — this will be your main treatment. And Clindamycin 1% gel in the morning on active lesions only. Use a gentle, non-comedogenic moisturizer and sunscreen daily — Adapalene will make your skin more sun-sensitive.\nDoctor: Important: Adapalene will make your skin worse before it gets better — around week 2-4 you'll see a purging phase. That's normal. Don't stop. Give it a full 12 weeks. Come back in 6 weeks for a check.\nPatient: What about diet?\nDoctor: Reduce dairy if you can — there's some evidence it worsens acne. Sugar and processed food in moderation. But topical treatment is the main intervention.",
+    "expected_entities": {
+      "symptoms": ["acne (painful, deep bumps)", "comedones", "inflammatory papules", "nodules (chin, jawline)"],
+      "conditions": ["moderate acne vulgaris (mixed comedonal + inflammatory, hormonal pattern)"],
+      "medications": ["Adapalene 0.1% gel ON (new)", "Clindamycin 1% gel AM on active lesions (new)"],
+      "vitals": {},
+      "investigations": [],
+      "follow_up": "6 weeks"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": [],
+      "missing": ["pregnancy status not confirmed before starting retinoid (Adapalene is Category C)"]
+    }
+  },
+  {
+    "id": "consult_019",
+    "specialty": "dermatology",
+    "duration_minutes": 4.0,
+    "language": "hindi_english_mixed",
+    "patient_age": 35,
+    "patient_gender": "M",
+    "complexity": "simple",
+    "transcript": "Patient: Doctor, pair ke anguthon ke beech mein bahut khujli hai aur chamdi nikal rahi hai.\nDoctor: Dono pairon mein?\nPatient: Haan, dono mein. Aur nakhun bhi thoda yellow ho gaya hai.\nDoctor: Kab se hai?\nPatient: 2-3 hafte se.\nDoctor: Gym ya swimming pool jaate ho?\nPatient: Haan, gym regularly. Shared shower use karta hoon.\nDoctor: Joote kaise hain — tight? Leather ya synthetic?\nPatient: Sports shoes, synthetic. Poore din pehne rehta hoon.\nDoctor: Let me see. Interdigital maceration and peeling between toes 3-4 and 4-5 bilaterally. Great toenail has distal yellowing and subungual debris. KOH prep... positive for fungal elements.\nDoctor: This is tinea pedis — athlete's foot — with early nail involvement. I'm giving Terbinafine cream to apply between the toes twice daily for 4 weeks. For the nail, we need oral Terbinafine 250mg once daily for 6 weeks minimum — topical alone won't penetrate the nail.\nDoctor: Gym mein chappal pehno, shared shower mein bhi. Shoes alternate karo — ek din ek pair, doosre din doosra. Cotton socks, synthetic nahi. Pairon ko dry rakho.\nPatient: Nail kitne time mein theek hoga?\nDoctor: Nail takes 6-9 months to grow out completely. The medication stops the fungus, but the damaged nail has to grow out. Be patient.",
+    "expected_entities": {
+      "symptoms": ["interdigital itching", "skin peeling between toes", "yellowing of toenail"],
+      "conditions": ["tinea pedis (bilateral)", "onychomycosis (great toenail)"],
+      "medications": ["Terbinafine cream BD x 4 weeks (topical)", "Terbinafine 250mg OD x 6 weeks (oral)"],
+      "vitals": {},
+      "investigations": ["KOH prep (positive)"],
+      "follow_up": "4 weeks"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": [],
+      "missing": ["LFT not ordered before starting oral Terbinafine (hepatotoxicity risk)"]
+    }
+  },
+  {
+    "id": "consult_020",
+    "specialty": "dermatology",
+    "duration_minutes": 5.5,
+    "language": "english",
+    "patient_age": 40,
+    "patient_gender": "F",
+    "complexity": "moderate",
+    "transcript": "Patient: I've had this rash for about 10 days. It started on my trunk and now it's spreading to my arms.\nDoctor: Is it itchy?\nPatient: Very itchy, especially at night.\nDoctor: Did you notice a single larger patch before the rash spread?\nPatient: Yes! About 2 weeks ago, there was one big oval patch on my chest. Then all these smaller ones appeared.\nDoctor: That's the herald patch. Classic history. Any recent illness before this started?\nPatient: I had a mild cold about 3 weeks ago.\nDoctor: Any new medications, detergents, or products?\nPatient: No.\nDoctor: Let me look. I can see multiple oval, salmon-colored patches with a fine collarette of scale, distributed along the skin lines — Christmas tree pattern on the back. Herald patch visible on the anterior chest, about 3cm.\nDoctor: This is pityriasis rosea. It's a self-limiting condition — it will resolve on its own in 6-8 weeks. The cause is thought to be viral. I'm giving Hydroxyzine 25mg at night for the itching, and a moisturizing lotion — Calamine with Aloe works well.\nDoctor: Avoid hot showers — they worsen the itch. Lukewarm water only. If the rash is still there after 8 weeks, come back and we'll reconsider.\nPatient: Is it contagious?\nDoctor: No, it's not contagious. You can go to work, exercise, everything normal.",
+    "expected_entities": {
+      "symptoms": ["widespread rash (trunk, arms)", "pruritus (worse at night)", "herald patch (chest, preceded rash by 2 weeks)"],
+      "conditions": ["pityriasis rosea"],
+      "medications": ["Hydroxyzine 25mg ON (for itch)", "Calamine with Aloe lotion"],
+      "vitals": {},
+      "investigations": [],
+      "follow_up": "if not resolved in 8 weeks"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": [],
+      "missing": ["RPR/VDRL not considered (secondary syphilis can mimic pityriasis rosea)"]
+    }
+  },
+  {
+    "id": "consult_021",
+    "specialty": "orthopedics",
+    "duration_minutes": 5.5,
+    "language": "hindi_english_mixed",
+    "patient_age": 38,
+    "patient_gender": "M",
+    "complexity": "moderate",
+    "transcript": "Patient: Doctor, kamar mein bahut dard hai. 1 hafte se. Left pair mein bhi neeche tak jaata hai.\nDoctor: Kaise shuru hua? Kuch uthaya tha ya koi injury?\nPatient: Office mein heavy box uthaya tha.\nDoctor: Dard kahan tak jaata hai pair mein?\nPatient: Left hip se neeche ghutne tak, kabhi kabhi pair ke anguthon tak bhi.\nDoctor: Sunn hota hai ya tingling?\nPatient: Haan, thoda tingling hota hai toes mein.\nDoctor: Coughing ya sneezing se dard badhta hai?\nPatient: Haan, bahut!\nDoctor: Bladder ya bowel mein koi change? Peshab control mein problem?\nPatient: Nahi, woh theek hai.\nDoctor: Good — that's important. Let me examine. Lumbar flexion limited to 30 degrees. Straight leg raise positive on left at 40 degrees. Power in left ankle dorsiflexion is 4/5 — slightly weak. Sensation reduced over left big toe. Right side is completely normal.\nDoctor: This is likely a lumbar disc herniation — probably L4-L5 or L5-S1 — pressing on the left sciatic nerve. I'm ordering an MRI of the lumbosacral spine urgently.\nDoctor: For now: Pregabalin 75mg twice daily for the nerve pain. Diclofenac 50mg twice daily for 5 days with Pantoprazole cover. Complete bed rest for 3 days — flat on a firm surface. No bending, no lifting.\nDoctor: After the MRI, we'll decide on physiotherapy vs further intervention. If at any point you develop bladder problems — inability to urinate or loss of control — go to emergency immediately. That's cauda equina syndrome and needs urgent surgery.\nPatient: Surgery ki zaroorat padegi?\nDoctor: Most disc herniations — about 80% — improve with conservative treatment. Let's see the MRI first.",
+    "expected_entities": {
+      "symptoms": ["lower back pain (1 week)", "left leg radiating pain (hip to toes)", "tingling in toes", "worse with coughing/sneezing"],
+      "conditions": ["suspected lumbar disc herniation (L4-L5 or L5-S1)", "left sciatica"],
+      "medications": ["Pregabalin 75mg BD (new)", "Diclofenac 50mg BD x 5 days (new)", "Pantoprazole (GI cover)"],
+      "vitals": {},
+      "investigations": ["MRI lumbosacral spine (urgent)"],
+      "follow_up": "after MRI results; emergency if bladder symptoms develop"
+    },
+    "expected_flags": {
+      "red_flags": ["Motor deficit (ankle dorsiflexion 4/5) — needs MRI to rule out significant nerve compression; monitor for cauda equina symptoms"],
+      "drug_interactions": ["Pregabalin + Diclofenac: MILD — both can cause dizziness; advise caution with driving"],
+      "missing": ["reflexes not documented (ankle jerk)"]
+    }
+  },
+  {
+    "id": "consult_022",
+    "specialty": "orthopedics",
+    "duration_minutes": 4.0,
+    "language": "english",
+    "patient_age": 55,
+    "patient_gender": "F",
+    "complexity": "simple",
+    "transcript": "Patient: I fell in the bathroom this morning and landed on my right wrist. It's very swollen and I can't move it.\nDoctor: How did you fall?\nPatient: I slipped on the wet floor.\nDoctor: Did you hit your head?\nPatient: No, just my wrist.\nDoctor: Can you move your fingers?\nPatient: Yes, fingers move but wrist movement is very painful.\nDoctor: Any numbness or tingling in the fingers?\nPatient: No.\nDoctor: Let me examine. There's significant swelling over the distal radius, tenderness over the dorsal aspect, dinner fork deformity visible. Fingers have good capillary refill, sensation intact, finger flexion and extension preserved.\nDoctor: This is almost certainly a distal radius fracture — Colles' fracture. I'm sending you for an X-ray right now. In the meantime, I'm putting a temporary splint for support. Ice the area — 15 minutes on, 15 off. Elevate the hand above heart level.\nDoctor: Paracetamol 1g every 8 hours for pain. Don't take any Ibuprofen until we decide on treatment — NSAIDs can affect bone healing.\nDoctor: Once the X-ray confirms, if it's non-displaced, a cast for 6 weeks. If displaced, you may need a reduction under local anesthesia today.\nPatient: At my age, is bone healing a concern?\nDoctor: Good question. I'm also ordering a DEXA scan — at 55 with a fragility fracture, we should check your bone density. I may start you on calcium and Vitamin D supplementation regardless.",
+    "expected_entities": {
+      "symptoms": ["right wrist pain post-fall", "swelling", "inability to move wrist", "dinner fork deformity"],
+      "conditions": ["suspected Colles' fracture (distal radius)"],
+      "medications": ["Paracetamol 1g Q8H (no NSAIDs)"],
+      "vitals": {},
+      "investigations": ["X-ray right wrist (immediate)", "DEXA scan (bone density)"],
+      "follow_up": "same day after X-ray; cast or reduction decision"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": [],
+      "missing": ["osteoporosis risk factors not fully assessed"]
+    }
+  },
+  {
+    "id": "consult_023",
+    "specialty": "orthopedics",
+    "duration_minutes": 6.0,
+    "language": "hindi_english_mixed",
+    "patient_age": 45,
+    "patient_gender": "M",
+    "complexity": "moderate",
+    "transcript": "Patient: Doctor, right shoulder mein 3 mahine se dard hai. Oopar nahi uthta haath.\nDoctor: Kaise shuru hua? Koi injury?\nPatient: Nahi, dheere dheere aaya. Pehle sirf overhead kaam mein hota tha, ab toh kapde pehenne mein bhi dard hota hai.\nDoctor: Raat ko dard badhta hai?\nPatient: Bahut! Uss taraf karwat nahi le sakta.\nDoctor: Pehle kabhi shoulder mein problem hui?\nPatient: Nahi.\nDoctor: Diabetes hai?\nPatient: Haan, Type 2. Metformin aur Glimepiride le raha hoon.\nDoctor: Diabetes patients mein shoulder problems zyada hoti hain. Let me examine.\nDoctor: Active forward flexion limited to 90 degrees, abduction limited to 80 degrees. Passive range is also limited — flexion 110, abduction 100. External rotation significantly limited at 20 degrees. No tenderness over specific points. Capsular pattern present.\nDoctor: This is adhesive capsulitis — frozen shoulder. Very common in diabetic patients. The key treatment is physiotherapy — aggressive stretching within pain limits. I'm prescribing Etoricoxib 90mg once daily for 2 weeks for the inflammation, and referring you to physiotherapy — minimum 3 sessions per week.\nDoctor: I'm also considering a steroid injection into the joint if physiotherapy alone isn't enough after 3-4 weeks. But let's try physio first.\nDoctor: This condition takes 12-18 months to fully resolve. It will get better, but patience is needed.\nPatient: Kaam pe jaana mushkil ho gaya hai.\nDoctor: I understand. The physiotherapy exercises — do them at home as well, twice daily. Warm shower before exercises helps.",
+    "expected_entities": {
+      "symptoms": ["right shoulder pain (3 months)", "limited overhead movement", "difficulty dressing", "night pain", "cannot sleep on affected side"],
+      "conditions": ["adhesive capsulitis (frozen shoulder)", "type 2 diabetes (known)"],
+      "medications": ["Etoricoxib 90mg OD x 2 weeks (new)", "Metformin (continuing)", "Glimepiride (continuing)"],
+      "vitals": {},
+      "investigations": [],
+      "follow_up": "3-4 weeks (assess physio response; consider steroid injection)"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": ["Etoricoxib + Glimepiride: MILD — NSAIDs may enhance hypoglycemic effect; monitor blood sugar"],
+      "missing": ["HbA1c not checked (diabetes control affects frozen shoulder recovery)", "X-ray not ordered (to rule out calcific tendinitis)"]
+    }
+  },
+  {
+    "id": "consult_024",
+    "specialty": "orthopedics",
+    "duration_minutes": 5.0,
+    "language": "english",
+    "patient_age": 25,
+    "patient_gender": "M",
+    "complexity": "moderate",
+    "transcript": "Patient: I twisted my left ankle playing football yesterday. It swelled up immediately and I can't put weight on it.\nDoctor: Did you hear a pop or snap?\nPatient: Yes, I heard a pop when it happened.\nDoctor: Can you walk at all?\nPatient: Only with a lot of pain, limping badly.\nDoctor: Any previous ankle injuries?\nPatient: I sprained it mildly about a year ago, same ankle.\nDoctor: Let me examine. Significant swelling over the lateral malleolus. Tenderness over the anterior talofibular ligament — that's the most commonly injured one. Posterior edge of the lateral malleolus is tender too. Anterior drawer test is positive — there's definite laxity. No medial tenderness. No proximal fibula tenderness.\nDoctor: Ottawa ankle rules say we need an X-ray given the bone tenderness over the malleolus and inability to weight-bear. Let's get AP and lateral views of the left ankle.\nDoctor: In the meantime: RICE protocol — Rest, Ice 20 minutes every 2 hours, Compression bandage which I'm applying now, and Elevation. I'm giving you an ankle brace as well.\nDoctor: Naproxen 500mg twice daily with food for 5 days. No Ibuprofen — Naproxen is longer-acting.\nDoctor: If the X-ray is clear — no fracture — this is likely a Grade 2 lateral ankle sprain with some ligament tearing. That would mean 4-6 weeks recovery with physio. If there's a fracture, we may need a cast or even surgery depending on the type.\nPatient: When can I play football again?\nDoctor: Let's see the X-ray first, then we'll have a clearer timeline. Even with a bad sprain, you're looking at 6-8 weeks minimum before returning to sport, with proper rehab to prevent recurrence — especially since this is your second injury on the same ankle.",
+    "expected_entities": {
+      "symptoms": ["left ankle injury (twisting mechanism, football)", "audible pop", "immediate swelling", "inability to weight-bear"],
+      "conditions": ["suspected lateral ankle sprain (Grade 2)", "possible fracture (Ottawa rules positive)"],
+      "medications": ["Naproxen 500mg BD x 5 days with food"],
+      "vitals": {},
+      "investigations": ["X-ray left ankle AP and lateral"],
+      "follow_up": "same day after X-ray; physiotherapy referral if no fracture"
+    },
+    "expected_flags": {
+      "red_flags": [],
+      "drug_interactions": [],
+      "missing": []
+    }
+  },
+  {
+    "id": "consult_025",
+    "specialty": "orthopedics",
+    "duration_minutes": 4.5,
+    "language": "hindi_english_mixed",
+    "patient_age": 68,
+    "patient_gender": "F",
+    "complexity": "complex",
+    "transcript": "Daughter: Doctor, meri mummy gir gayi thi ghar mein. Left hip mein bahut dard hai, chal nahi pa rahi.\nDoctor: Kab giri?\nDaughter: Subah, 3 ghante pehle.\nDoctor: Kaise giri? Chakkar aaya tha?\nPatient: Haan, thoda chakkar aaya, phir gir gayi.\nDoctor: Sir pe lagi?\nDaughter: Nahi.\nDoctor: Let me examine. Left leg is shortened and externally rotated — classic sign. She can't lift the leg off the bed. Hip tenderness on palpation. Distal pulses intact, sensation intact in the foot.\nDoctor: BP is 158/90, heart rate 88. She looks pale.\nDoctor: This is almost certainly a fractured neck of femur — a hip fracture. I'm ordering an X-ray of the left hip immediately, and also a CBC, coagulation profile, ECG, and renal function — she'll need surgery.\nDoctor: For pain right now: Tramadol injection 50mg IM. Start IV fluids. Keep her nil by mouth in case we go to surgery today.\nDoctor: The dizziness before the fall concerns me — we need to find out why she felt dizzy. Could be postural hypotension, could be cardiac. I'm adding a lying-standing BP and an echocardiogram to the workup.\nDaughter: Surgery zaruri hai?\nDoctor: At her age, yes — hip fractures must be operated on quickly, ideally within 48 hours. Without surgery, she won't walk again and the complications of bed rest — blood clots, pneumonia — are dangerous. I'm calling the orthopedic surgeon for an urgent consult.\nDoctor: Kya dawaiyan le rahi hain aunty?\nPatient: BP ki — Losartan. Aur sugar ki — Sitagliptin aur Metformin.\nDoctor: OK. We'll manage all of that through the admission.",
+    "expected_entities": {
+      "symptoms": ["fall with dizziness", "left hip pain", "inability to walk", "leg shortened and externally rotated"],
+      "conditions": ["suspected fractured neck of femur (left)", "hypertension (known)", "type 2 diabetes (known)", "pre-syncopal episode (dizziness before fall)"],
+      "medications": ["Tramadol 50mg IM (acute pain)", "Losartan (continuing)", "Sitagliptin (continuing)", "Metformin (continuing — may hold peri-operatively)"],
+      "vitals": {"BP": "158/90", "heart_rate": "88"},
+      "investigations": ["X-ray left hip (immediate)", "CBC", "coagulation profile", "ECG", "renal function", "lying-standing BP", "echocardiogram"],
+      "follow_up": "admission; ortho surgeon urgent consult; surgery within 48 hours"
+    },
+    "expected_flags": {
+      "red_flags": ["Hip fracture in elderly — surgery within 48 hours per ICMR/NICE guidelines to reduce mortality", "Pre-syncopal episode before fall — requires cardiac workup to prevent recurrence", "Metformin may need to be held peri-operatively (renal function pending)"],
+      "drug_interactions": ["Tramadol + Metformin: MILD — tramadol may affect blood sugar; monitor", "Losartan may need hold peri-operatively depending on renal function and BP"],
+      "missing": ["VTE prophylaxis not yet ordered (critical in hip fracture)", "bone density not assessed"]
+    }
+  }
+]

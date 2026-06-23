@@ -1,0 +1,357 @@
+# P2 — ICMR-Aligned Clinical Practice Protocols
+## For RAG Knowledge Base — Clinical Voice Scribe + Triage
+
+These protocols are synthetic teaching documents aligned to ICMR Clinical Practice Guidelines structure. They are NOT official ICMR documents — they are constructed for the AceAI bootcamp prototype.
+
+---
+
+## PROTOCOL 1: ACUTE CORONARY SYNDROME (ACS) — PRIMARY CARE TRIAGE
+
+### When to suspect
+- Chest pain/heaviness/tightness with or without radiation to left arm, jaw, back
+- Shortness of breath with exertion in patients >40 years
+- New onset diaphoresis (sweating) with chest discomfort
+- **HIGH RISK GROUPS:** Diabetics (may present atypically — epigastric pain, fatigue, dyspnea without chest pain), hypertensives, smokers, family history of premature CAD
+
+### Red flags — immediate action required
+- Chest pain + sweating + breathlessness (classic triad)
+- Chest pain in known diabetic (even if atypical)
+- New onset arrhythmia with hemodynamic instability
+- Syncope with chest pain
+
+### Primary care protocol
+1. **Immediate:** ECG within 10 minutes of presentation
+2. **Aspirin 325mg** chewable stat (unless allergy documented)
+3. **Sublingual Nitroglycerin** 0.4mg if BP >90 systolic (up to 3 doses, 5 min apart)
+4. **Oxygen** if SpO2 <94%
+5. **Do NOT delay referral** — call ambulance/transfer to nearest cath lab facility
+6. **Troponin** if available; do not wait for results before transfer
+
+### Documentation requirements
+- Time of symptom onset (critical for thrombolysis/PCI window)
+- Time of first medical contact
+- ECG findings
+- Medications administered with timestamps
+
+### What the AI should flag
+- Any chest pain + diabetes → RED FLAG
+- Any chest pain + age >50 + hypertension → RED FLAG
+- Exertional dyspnea + sweating → RED FLAG even without chest pain
+- Silent MI presentation in diabetics → HIGH ALERT
+
+---
+
+## PROTOCOL 2: TYPE 2 DIABETES MELLITUS — OUTPATIENT MANAGEMENT
+
+### Diagnostic criteria (ICMR/WHO)
+- Fasting plasma glucose ≥126 mg/dL (on two occasions)
+- 2-hour post-prandial glucose ≥200 mg/dL (OGTT)
+- HbA1c ≥6.5%
+- Random glucose ≥200 mg/dL with symptoms
+
+### Treatment targets
+| Parameter | Target |
+|---|---|
+| HbA1c | <7.0% (individualise: <6.5% if young, no complications; <8.0% if elderly, comorbid) |
+| Fasting glucose | 80-130 mg/dL |
+| Post-prandial glucose | <180 mg/dL |
+| BP | <130/80 mmHg |
+| LDL cholesterol | <100 mg/dL (<70 if established CVD) |
+
+### First-line therapy
+- **Metformin** starting dose 500mg OD with meals, titrate to 1000mg BD over 4-8 weeks
+- Contraindications: eGFR <30, active liver disease, acute illness, peri-operative period
+
+### When to add second agent
+- HbA1c >7.5% on maximised Metformin after 3 months
+- Options: Sulfonylurea (Glimepiride), DPP-4 inhibitor (Sitagliptin), SGLT2 inhibitor (Dapagliflozin)
+
+### Monitoring schedule
+- HbA1c every 3 months until target reached, then every 6 months
+- Renal function (eGFR, urine ACR) annually
+- Lipid profile annually
+- Eye examination annually (dilated fundoscopy)
+- Foot examination every visit
+
+### What the AI should flag
+- Fasting glucose >250 or HbA1c >10% → urgent review
+- eGFR <30 on Metformin → contraindication alert
+- Missed eye/foot/renal screening → documentation gap
+
+---
+
+## PROTOCOL 3: HYPERTENSION — DIAGNOSIS AND MANAGEMENT
+
+### Diagnosis (ICMR/ISH guidelines)
+- Office BP ≥140/90 mmHg on two separate occasions
+- Home BP ≥135/85 mmHg (average of 7-day monitoring)
+- White coat hypertension: consider ABPM
+
+### Classification
+| Category | Systolic | Diastolic |
+|---|---|---|
+| Normal | <120 | <80 |
+| Elevated | 120-129 | <80 |
+| Stage 1 | 130-139 | 80-89 |
+| Stage 2 | ≥140 | ≥90 |
+| Hypertensive crisis | >180 | >120 |
+
+### First-line therapy (Indian context)
+- ACE inhibitor (Enalapril, Ramipril) OR ARB (Telmisartan, Losartan)
+- Calcium channel blocker (Amlodipine) — preferred in elderly, isolated systolic HTN
+- Thiazide diuretic (Hydrochlorothiazide) — add-on
+
+### Drug interactions to flag
+- ACE inhibitor + ARB: DO NOT combine (increased renal risk)
+- ACE inhibitor/ARB + potassium-sparing diuretic: hyperkalemia risk
+- NSAIDs + any antihypertensive: NSAIDs reduce efficacy
+- NSAIDs + ACE/ARB + diuretic: "triple whammy" — acute kidney injury risk
+
+### What the AI should flag
+- BP >180/120 → hypertensive crisis, immediate assessment
+- New headache + BP >160 → rule out secondary causes
+- NSAIDs prescribed alongside antihypertensives → drug interaction alert
+
+---
+
+## PROTOCOL 4: PEDIATRIC ACUTE GASTROENTERITIS — DEHYDRATION MANAGEMENT
+
+### Dehydration assessment (WHO/ICMR)
+
+| Sign | No dehydration | Some dehydration | Severe dehydration |
+|---|---|---|---|
+| General condition | Well, alert | Restless, irritable | Lethargic, unconscious |
+| Eyes | Normal | Sunken | Very sunken |
+| Tears | Present | Absent | Absent |
+| Mouth/tongue | Moist | Dry | Very dry |
+| Skin pinch | Goes back quickly | Goes back slowly | Goes back very slowly |
+| Urine output | Normal | Reduced | None for >6 hours |
+
+### Treatment by severity
+**No dehydration (Plan A):**
+- ORS after each loose stool: <2 years: 50-100ml; 2-10 years: 100-200ml; >10 years: as much as wanted
+- Continue breastfeeding/feeding
+- Zinc: <6 months: 10mg/day x 14 days; ≥6 months: 20mg/day x 14 days
+
+**Some dehydration (Plan B):**
+- ORS: 75ml/kg over 4 hours
+- Reassess every 1-2 hours
+- If not improving → Plan C
+
+**Severe dehydration (Plan C):**
+- IV Ringer's Lactate or Normal Saline immediately
+- 30ml/kg in first 30 min (infants) or first 1 hour (children >1 year)
+- Then 70ml/kg over next 5 hours (infants) or 2.5 hours (children)
+- Hospital admission mandatory
+
+### Red flags — immediate hospital referral
+- Weight loss >10% of body weight
+- No urine output for 6+ hours
+- Persistent vomiting (cannot keep ORS down)
+- Bloody diarrhea
+- High fever (>39°C) with dehydration
+- Altered consciousness
+
+### What the AI should flag
+- Weight loss calculation from previous visit → auto-calculate % dehydration
+- No urine for 6+ hours in child → SEVERE dehydration alert
+- Blood in stool → possible dysentery, antibiotic consideration
+
+---
+
+## PROTOCOL 5: ASTHMA — ACUTE EXACERBATION MANAGEMENT
+
+### Severity assessment
+
+| Parameter | Mild | Moderate | Severe | Life-threatening |
+|---|---|---|---|---|
+| Talks in | Sentences | Phrases | Words | Cannot speak |
+| SpO2 | >95% | 92-95% | <92% | <90% |
+| Peak flow | >75% predicted | 50-75% | 25-50% | <25% |
+| Respiratory rate (adult) | <25 | 25-30 | >30 | Bradypnea |
+| Heart rate | <110 | 110-120 | >120 | Bradycardia |
+| Accessory muscles | No | Yes | Yes | Paradoxical movement |
+
+### Step-up treatment
+**Step 1 (Mild):** Salbutamol MDI 4-8 puffs via spacer, repeat Q20min x 3
+**Step 2 (Moderate):** Add Ipratropium 4 puffs. Oral Prednisolone 40mg (adult) / 1-2mg/kg (child)
+**Step 3 (Severe):** Continuous nebulisation. IV Magnesium sulphate 2g over 20 min. Prepare for ICU.
+**Step 4 (Life-threatening):** Intubation and mechanical ventilation. IV Salbutamol. ICU transfer.
+
+### Pediatric SpO2 thresholds
+- SpO2 >95%: manage at home with follow-up
+- SpO2 92-95%: observe 1-2 hours post-treatment; discharge if responding
+- SpO2 <92%: hospital admission
+- SpO2 <90%: ICU/HDU
+
+### What the AI should flag
+- SpO2 <92% in any asthma patient → SEVERE exacerbation
+- SpO2 <95% in child → borderline for admission
+- Patient on preventer inhaler who stopped → likely trigger for exacerbation
+- Silent chest (no wheeze in severe distress) → LIFE-THREATENING
+
+---
+
+## PROTOCOL 6: PREGNANCY — FIRST TRIMESTER CARE
+
+### First visit investigations (per ICMR ANC guidelines)
+- Hemoglobin, blood group + Rh
+- Random blood sugar (GDM screening if high risk)
+- TSH (mandatory — hypothyroidism common in India)
+- Urine routine + culture
+- VDRL/RPR
+- HIV (with consent)
+- Hepatitis B surface antigen
+- Ultrasound: viability + dating (ideally 6-8 weeks)
+- Rubella IgG (if no documented immunity)
+
+### Red flags in first trimester
+- Vaginal bleeding → threatened abortion, ectopic pregnancy
+- Severe vomiting (>5 times/day, unable to keep fluids) → hyperemesis gravidarum
+- Abdominal pain + bleeding + dizziness → ectopic pregnancy until proven otherwise
+- BP >140/90 in first visit → chronic hypertension (pre-existing)
+
+### Thyroid in pregnancy
+- TSH target: <2.5 mIU/L in first trimester
+- Existing hypothyroid patients: increase Levothyroxine dose by 30-50% as soon as pregnancy confirmed
+- Recheck TSH every 4 weeks in first trimester
+
+### Medications to avoid
+- Retinoids (Isotretinoin, Adapalene) — teratogenic
+- Warfarin — teratogenic in first trimester
+- ACE inhibitors / ARBs — fetotoxic
+- Methotrexate — abortifacient
+- NSAIDs — avoid especially in third trimester
+
+### What the AI should flag
+- First trimester bleeding → ultrasound needed to rule out ectopic
+- TSH >2.5 in pregnant patient → dose adjustment needed
+- Any Category X drug in pregnant patient → CRITICAL alert
+
+---
+
+## PROTOCOL 7: COMMON DRUG INTERACTIONS — PRIMARY CARE
+
+### Critical interactions (NEVER co-prescribe without specialist input)
+
+| Drug A | Drug B | Risk | Severity |
+|---|---|---|---|
+| Warfarin | NSAIDs (any) | Major bleeding | CRITICAL |
+| Warfarin | Aspirin (>100mg) | Major bleeding | CRITICAL |
+| Warfarin | Tranexamic acid | Thromboembolism | CRITICAL |
+| ACE inhibitor | Potassium supplement | Hyperkalemia → cardiac arrest | CRITICAL |
+| Methotrexate | NSAIDs | Methotrexate toxicity | CRITICAL |
+| MAO inhibitor | SSRI/SNRI | Serotonin syndrome | CRITICAL |
+
+### Moderate interactions (monitor closely)
+
+| Drug A | Drug B | Risk | Action |
+|---|---|---|---|
+| NSAIDs | ACE/ARB | Reduced antihypertensive effect, renal risk | Monitor BP, renal function |
+| NSAIDs | Diuretics | Reduced diuretic effect, renal risk | Monitor renal function |
+| Metformin | Contrast dye | Lactic acidosis | Hold Metformin 48h pre/post |
+| Corticosteroids | NSAIDs | GI bleeding | Add PPI cover |
+| SSRIs | NSAIDs | GI bleeding (2-3x risk) | Add PPI cover |
+| Statins | Macrolides | Myopathy/rhabdomyolysis | Use Azithromycin (safest macrolide) |
+
+### What the AI should flag
+- Any CRITICAL interaction → RED FLAG with alternative suggestion
+- Any MODERATE interaction → WARNING with monitoring recommendation
+- Multiple NSAIDs prescribed simultaneously → FLAG (common error)
+
+---
+
+## PROTOCOL 8: MENTAL HEALTH SCREENING — PRIMARY CARE
+
+### When to screen
+- Patient mentions sleep disturbance, fatigue, loss of interest lasting >2 weeks
+- Chronic pain with no clear organic cause
+- Frequent clinic visits with multiple somatic complaints
+- Caregiver burnout (parents of sick children, elderly caregivers)
+
+### PHQ-2 Quick Screen
+1. Over the past 2 weeks, how often have you been bothered by little interest or pleasure in doing things?
+2. Over the past 2 weeks, how often have you been bothered by feeling down, depressed, or hopeless?
+
+Score ≥3 → proceed to PHQ-9
+
+### Safety assessment triggers
+If patient mentions:
+- Suicidal thoughts → assess immediacy, plan, means
+- Self-harm → assess recency, method, frequency
+- Harm to others → assess target, plan
+- Domestic violence → assess safety, offer resources
+
+### What the AI should flag
+- Keywords: "wanting to die", "no reason to live", "better off without me", "can't take it anymore" → IMMEDIATE SAFETY FLAG
+- This flag must override all other processing — surface to physician immediately
+- AI must NOT counsel, advise, or attempt to assess — flag to human only
+
+---
+
+## PROTOCOL 9: ANTIMICROBIAL STEWARDSHIP — PRIMARY CARE
+
+### When antibiotics are NOT indicated
+- Viral upper respiratory infection (common cold)
+- Acute bronchitis in otherwise healthy adults
+- Viral gastroenteritis (no blood, no fever >39°C, no severe dehydration)
+- Non-specific sore throat without positive strep test
+
+### When antibiotics ARE indicated
+- Confirmed bacterial pneumonia (clinical/X-ray)
+- Urinary tract infection (confirmed by symptoms + urine culture/dipstick)
+- Streptococcal pharyngitis (positive rapid strep test or culture)
+- Acute otitis media in children <2 years, or severe symptoms
+- Cellulitis / skin abscess with systemic signs
+
+### First-line antibiotic choices (ICMR AMR guidelines)
+| Condition | First-line | Duration |
+|---|---|---|
+| Uncomplicated UTI (women) | Nitrofurantoin 100mg BD | 5 days |
+| Strep pharyngitis | Amoxicillin 500mg TDS | 10 days |
+| Acute otitis media (peds) | Amoxicillin 80-90mg/kg/day | 7-10 days |
+| Community-acquired pneumonia | Amoxicillin 500mg TDS or Azithromycin 500mg OD | 5-7 days |
+| Cellulitis | Cephalexin 500mg QDS | 5-7 days |
+
+### What the AI should flag
+- Antibiotic prescribed for viral URI → stewardship alert
+- Fluoroquinolone as first-line for UTI → not recommended per ICMR (resistance >30%)
+- Duration >14 days for any community infection → review indication
+
+---
+
+## PROTOCOL 10: GERIATRIC CARE — FALL RISK AND POLYPHARMACY
+
+### Fall risk assessment
+High risk if ≥2 of:
+- Age >65
+- Previous fall in last 12 months
+- Gait or balance disorder
+- Visual impairment
+- Cognitive impairment
+- ≥4 medications (polypharmacy)
+- Postural hypotension
+- Environmental hazards at home
+
+### Medications that increase fall risk
+- Benzodiazepines and sedatives
+- Antihypertensives (especially alpha-blockers, diuretics)
+- Opioids
+- Anticholinergics
+- Antidepressants (SSRIs and tricyclics)
+- Antipsychotics
+
+### Post-fall protocol
+1. Assess for fracture (hip, wrist, spine — most common)
+2. Check for head injury (even if patient denies — elderly may not report)
+3. Lying-standing BP (postural hypotension is the most common reversible cause)
+4. Medication review — can any fall-risk medication be stopped or reduced?
+5. ECG — rule out arrhythmia
+6. Blood glucose — hypoglycemia as cause
+7. Bone density screening if fragility fracture
+
+### What the AI should flag
+- Patient >65 + fall + any fracture → osteoporosis screening needed
+- Patient on ≥5 medications → polypharmacy review recommended
+- Benzodiazepine use in elderly → fall risk alert
+- Post-fall with dizziness → cardiac and postural workup needed

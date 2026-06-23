@@ -1,0 +1,402 @@
+[
+  {
+    "id": "DI_001",
+    "drug_a": "Warfarin",
+    "drug_b": "Aspirin",
+    "severity": "CRITICAL",
+    "mechanism": "Aspirin inhibits platelet aggregation and may displace Warfarin from protein binding, significantly increasing bleeding risk.",
+    "clinical_effect": "Major hemorrhage — GI bleeding, intracranial hemorrhage",
+    "recommendation": "Avoid combination unless specifically indicated by cardiologist (e.g., mechanical valve + recent stent). If co-prescribed, use low-dose Aspirin (75mg) and monitor INR weekly.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_002",
+    "drug_a": "Warfarin",
+    "drug_b": "Tranexamic acid",
+    "severity": "CRITICAL",
+    "mechanism": "Tranexamic acid is an antifibrinolytic that promotes clot stability. In anticoagulated patients, this creates opposing pharmacological effects — risk of thromboembolism while on anticoagulation.",
+    "clinical_effect": "Thromboembolism (stroke, PE, DVT) in anticoagulated patients",
+    "recommendation": "Avoid unless cardiology explicitly approves. If used for menorrhagia in anticoagulated patient, requires specialist co-management and close INR monitoring.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_003",
+    "drug_a": "Warfarin",
+    "drug_b": "Diclofenac",
+    "severity": "CRITICAL",
+    "mechanism": "NSAIDs inhibit COX-1, reducing protective gastric prostaglandins and impairing platelet function. Combined with anticoagulation, major bleeding risk increases 3-6 fold.",
+    "clinical_effect": "GI hemorrhage, prolonged bleeding from any site",
+    "recommendation": "Avoid all NSAIDs in patients on Warfarin. Use Paracetamol for pain. If NSAID absolutely needed, use lowest dose for shortest duration with PPI cover.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_004",
+    "drug_a": "Metformin",
+    "drug_b": "Iodinated contrast dye",
+    "severity": "CRITICAL",
+    "mechanism": "Contrast dye can cause acute kidney injury, reducing Metformin clearance and leading to lactic acidosis accumulation.",
+    "clinical_effect": "Lactic acidosis — potentially fatal",
+    "recommendation": "Hold Metformin 48 hours before and after contrast administration. Check renal function before restarting.",
+    "source": "ICMR Diabetes Protocol 2"
+  },
+  {
+    "id": "DI_005",
+    "drug_a": "ACE inhibitor (Enalapril/Ramipril)",
+    "drug_b": "Potassium supplement",
+    "severity": "CRITICAL",
+    "mechanism": "ACE inhibitors reduce aldosterone secretion, decreasing potassium excretion. Additional potassium supplementation can cause dangerous hyperkalemia.",
+    "clinical_effect": "Hyperkalemia → cardiac arrhythmia → cardiac arrest",
+    "recommendation": "Avoid potassium supplements in patients on ACE inhibitors unless serum potassium is monitored weekly. Never co-prescribe with potassium-sparing diuretics.",
+    "source": "ICMR Hypertension Protocol 3"
+  },
+  {
+    "id": "DI_006",
+    "drug_a": "ACE inhibitor",
+    "drug_b": "ARB (Telmisartan/Losartan)",
+    "severity": "CRITICAL",
+    "mechanism": "Dual RAAS blockade causes excessive hypotension, hyperkalemia, and acute kidney injury. No mortality benefit demonstrated.",
+    "clinical_effect": "Acute kidney injury, hyperkalemia, symptomatic hypotension",
+    "recommendation": "NEVER combine ACE inhibitor and ARB. Choose one class only.",
+    "source": "ICMR Hypertension Protocol 3"
+  },
+  {
+    "id": "DI_007",
+    "drug_a": "Methotrexate",
+    "drug_b": "NSAIDs (any)",
+    "severity": "CRITICAL",
+    "mechanism": "NSAIDs reduce renal clearance of Methotrexate, leading to toxic accumulation affecting bone marrow, liver, and kidneys.",
+    "clinical_effect": "Pancytopenia, hepatotoxicity, renal failure",
+    "recommendation": "Avoid NSAIDs in patients on Methotrexate. Use Paracetamol for pain. If NSAID unavoidable, hold Methotrexate and monitor CBC/LFT closely.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_008",
+    "drug_a": "SSRI (Fluoxetine/Sertraline)",
+    "drug_b": "MAO inhibitor",
+    "severity": "CRITICAL",
+    "mechanism": "Combined serotonergic activity causes excessive CNS serotonin accumulation.",
+    "clinical_effect": "Serotonin syndrome — hyperthermia, rigidity, myoclonus, autonomic instability, potentially fatal",
+    "recommendation": "ABSOLUTE CONTRAINDICATION. Minimum 2-week washout between stopping one and starting the other (5 weeks for Fluoxetine due to long half-life).",
+    "source": "ICMR Mental Health Protocol 8"
+  },
+  {
+    "id": "DI_009",
+    "drug_a": "Diclofenac",
+    "drug_b": "Hydrochlorothiazide",
+    "severity": "MODERATE",
+    "mechanism": "NSAIDs cause sodium and water retention, directly opposing the diuretic effect. Also reduce renal prostaglandin-mediated blood flow.",
+    "clinical_effect": "Reduced antihypertensive/diuretic efficacy, increased risk of acute kidney injury",
+    "recommendation": "Monitor BP and renal function. Use lowest NSAID dose for shortest duration. Consider Paracetamol as alternative.",
+    "source": "ICMR Hypertension Protocol 3"
+  },
+  {
+    "id": "DI_010",
+    "drug_a": "Diclofenac",
+    "drug_b": "Telmisartan",
+    "severity": "MODERATE",
+    "mechanism": "NSAIDs reduce renal prostaglandins; ARBs reduce efferent arteriolar tone. Combined effect significantly reduces glomerular filtration.",
+    "clinical_effect": "Acute kidney injury, reduced antihypertensive effect",
+    "recommendation": "Avoid if possible. If used, monitor renal function within 1 week. Ensure adequate hydration.",
+    "source": "ICMR Hypertension Protocol 3"
+  },
+  {
+    "id": "DI_011",
+    "drug_a": "Diclofenac",
+    "drug_b": "Losartan",
+    "severity": "MODERATE",
+    "mechanism": "Same as DI_010 — NSAID + ARB combination reduces GFR through complementary mechanisms.",
+    "clinical_effect": "Acute kidney injury, BP control worsened",
+    "recommendation": "Avoid. Use Paracetamol instead of Diclofenac when possible.",
+    "source": "ICMR Hypertension Protocol 3"
+  },
+  {
+    "id": "DI_012",
+    "drug_a": "Metformin",
+    "drug_b": "Aspirin",
+    "severity": "MILD",
+    "mechanism": "Aspirin may potentiate the hypoglycemic effect of Metformin through uncertain mechanism (possibly enhanced insulin sensitivity).",
+    "clinical_effect": "Mild increased risk of hypoglycemia",
+    "recommendation": "Monitor blood glucose when initiating combination. Usually clinically insignificant at low-dose Aspirin (75mg).",
+    "source": "ICMR Diabetes Protocol 2"
+  },
+  {
+    "id": "DI_013",
+    "drug_a": "Amlodipine",
+    "drug_b": "Simvastatin",
+    "severity": "MODERATE",
+    "mechanism": "Amlodipine inhibits CYP3A4, increasing Simvastatin levels and risk of myopathy.",
+    "clinical_effect": "Myopathy, rhabdomyolysis (rare but serious)",
+    "recommendation": "Limit Simvastatin to 20mg/day when co-prescribed with Amlodipine. Consider Atorvastatin or Rosuvastatin as alternatives.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_014",
+    "drug_a": "Ciprofloxacin",
+    "drug_b": "Theophylline",
+    "severity": "MODERATE",
+    "mechanism": "Ciprofloxacin inhibits CYP1A2-mediated metabolism of Theophylline, increasing Theophylline levels.",
+    "clinical_effect": "Theophylline toxicity — nausea, vomiting, seizures, arrhythmia",
+    "recommendation": "Reduce Theophylline dose by 30-50% or choose Azithromycin instead of Ciprofloxacin.",
+    "source": "ICMR Antimicrobial Protocol 9"
+  },
+  {
+    "id": "DI_015",
+    "drug_a": "Prednisolone",
+    "drug_b": "Diclofenac",
+    "severity": "MODERATE",
+    "mechanism": "Both independently increase risk of GI ulceration and bleeding. Combined risk is synergistic.",
+    "clinical_effect": "GI bleeding, peptic ulcer",
+    "recommendation": "Always add PPI cover (Pantoprazole/Omeprazole) when combining. Monitor for GI symptoms.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_016",
+    "drug_a": "Glimepiride",
+    "drug_b": "Etoricoxib",
+    "severity": "MILD",
+    "mechanism": "NSAIDs (including COX-2 selective) may enhance the hypoglycemic effect of sulfonylureas through protein binding displacement.",
+    "clinical_effect": "Increased risk of hypoglycemia",
+    "recommendation": "Monitor blood glucose when starting NSAID. Warn patient of hypoglycemia symptoms.",
+    "source": "ICMR Diabetes Protocol 2"
+  },
+  {
+    "id": "DI_017",
+    "drug_a": "Venlafaxine",
+    "drug_b": "Amlodipine",
+    "severity": "MILD",
+    "mechanism": "Venlafaxine (SNRI) has mild noradrenergic effects that can slightly increase blood pressure, partially opposing Amlodipine's antihypertensive effect.",
+    "clinical_effect": "Slightly elevated BP",
+    "recommendation": "Monitor BP at baseline and 2-4 weeks after starting Venlafaxine. Adjust antihypertensive if needed.",
+    "source": "ICMR Mental Health Protocol 8"
+  },
+  {
+    "id": "DI_018",
+    "drug_a": "Pregabalin",
+    "drug_b": "Diclofenac",
+    "severity": "MILD",
+    "mechanism": "Both cause CNS depression (Pregabalin) and dizziness. No direct pharmacokinetic interaction.",
+    "clinical_effect": "Increased drowsiness, dizziness, impaired coordination",
+    "recommendation": "Warn patient about driving and operating machinery. Start Pregabalin at lower dose.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_019",
+    "drug_a": "Tramadol",
+    "drug_b": "Metformin",
+    "severity": "MILD",
+    "mechanism": "Tramadol may enhance insulin secretion through serotonergic mechanism, potentially lowering blood glucose.",
+    "clinical_effect": "Unpredictable blood glucose fluctuations",
+    "recommendation": "Monitor blood glucose in diabetic patients receiving Tramadol. Short-term use (peri-operative) is generally safe with monitoring.",
+    "source": "ICMR Diabetes Protocol 2"
+  },
+  {
+    "id": "DI_020",
+    "drug_a": "Tramadol",
+    "drug_b": "SSRI (Sertraline/Fluoxetine)",
+    "severity": "MODERATE",
+    "mechanism": "Tramadol has serotonin reuptake inhibition activity. Combined with SSRIs, increased serotonergic activity.",
+    "clinical_effect": "Serotonin syndrome (milder than MAOI+SSRI but still clinically significant)",
+    "recommendation": "Avoid if possible. If needed, use lowest effective doses. Monitor for agitation, tremor, hyperthermia.",
+    "source": "ICMR Mental Health Protocol 8"
+  },
+  {
+    "id": "DI_021",
+    "drug_a": "Levothyroxine",
+    "drug_b": "Calcium supplement",
+    "severity": "MODERATE",
+    "mechanism": "Calcium binds Levothyroxine in the GI tract, reducing absorption by 20-30%.",
+    "clinical_effect": "Reduced thyroid hormone levels, hypothyroid symptoms",
+    "recommendation": "Separate doses by at least 4 hours. Take Levothyroxine on empty stomach in the morning, Calcium with meals later in the day.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_022",
+    "drug_a": "Levothyroxine",
+    "drug_b": "Iron supplement",
+    "severity": "MODERATE",
+    "mechanism": "Iron chelates Levothyroxine in the GI tract, reducing absorption.",
+    "clinical_effect": "Reduced thyroid hormone levels",
+    "recommendation": "Separate doses by at least 4 hours.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_023",
+    "drug_a": "Amoxicillin",
+    "drug_b": "Methotrexate",
+    "severity": "MODERATE",
+    "mechanism": "Amoxicillin reduces renal tubular secretion of Methotrexate, increasing Methotrexate blood levels.",
+    "clinical_effect": "Methotrexate toxicity — myelosuppression, mucositis",
+    "recommendation": "Monitor CBC if combination unavoidable. Consider Azithromycin as alternative antibiotic.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_024",
+    "drug_a": "Ciprofloxacin",
+    "drug_b": "Antacids (Aluminium/Magnesium)",
+    "severity": "MODERATE",
+    "mechanism": "Divalent cations (Al, Mg, Ca, Fe) chelate fluoroquinolones, drastically reducing absorption.",
+    "clinical_effect": "Therapeutic failure of antibiotic",
+    "recommendation": "Take Ciprofloxacin 2 hours before or 6 hours after antacids.",
+    "source": "ICMR Antimicrobial Protocol 9"
+  },
+  {
+    "id": "DI_025",
+    "drug_a": "Clopidogrel",
+    "drug_b": "Omeprazole",
+    "severity": "MODERATE",
+    "mechanism": "Omeprazole inhibits CYP2C19, which is needed to convert Clopidogrel (prodrug) to its active metabolite.",
+    "clinical_effect": "Reduced antiplatelet effect of Clopidogrel, increased cardiovascular event risk",
+    "recommendation": "Use Pantoprazole instead of Omeprazole (less CYP2C19 inhibition). Or use Rabeprazole.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_026",
+    "drug_a": "Atorvastatin",
+    "drug_b": "Erythromycin",
+    "severity": "MODERATE",
+    "mechanism": "Erythromycin inhibits CYP3A4, increasing statin levels.",
+    "clinical_effect": "Myopathy, rhabdomyolysis",
+    "recommendation": "Use Azithromycin instead of Erythromycin. If Erythromycin essential, temporarily hold statin.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_027",
+    "drug_a": "Digoxin",
+    "drug_b": "Amiodarone",
+    "severity": "CRITICAL",
+    "mechanism": "Amiodarone inhibits P-glycoprotein and renal clearance of Digoxin, doubling Digoxin levels.",
+    "clinical_effect": "Digoxin toxicity — nausea, visual changes, bradycardia, arrhythmia",
+    "recommendation": "Reduce Digoxin dose by 50% when starting Amiodarone. Monitor Digoxin levels weekly for first month.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_028",
+    "drug_a": "Lithium",
+    "drug_b": "NSAIDs (any)",
+    "severity": "CRITICAL",
+    "mechanism": "NSAIDs reduce renal prostaglandin-mediated lithium clearance, increasing lithium levels by 15-30%.",
+    "clinical_effect": "Lithium toxicity — tremor, confusion, renal failure, seizures",
+    "recommendation": "Avoid NSAIDs in patients on Lithium. Use Paracetamol. If NSAID essential, monitor Lithium levels within 5-7 days.",
+    "source": "ICMR Mental Health Protocol 8"
+  },
+  {
+    "id": "DI_029",
+    "drug_a": "Carbamazepine",
+    "drug_b": "Oral contraceptives",
+    "severity": "MODERATE",
+    "mechanism": "Carbamazepine induces CYP3A4, accelerating metabolism of ethinyl estradiol and progestins.",
+    "clinical_effect": "Contraceptive failure, unplanned pregnancy",
+    "recommendation": "Use non-oral contraception (IUD, depot injection) or higher-dose OCP. Counsel patient about reduced efficacy.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_030",
+    "drug_a": "Losartan",
+    "drug_b": "Spironolactone",
+    "severity": "MODERATE",
+    "mechanism": "Both reduce potassium excretion — ARB via RAAS inhibition, Spironolactone as potassium-sparing diuretic.",
+    "clinical_effect": "Hyperkalemia",
+    "recommendation": "Monitor serum potassium within 1 week of combination and monthly thereafter. Avoid potassium-rich foods.",
+    "source": "ICMR Hypertension Protocol 3"
+  },
+  {
+    "id": "DI_031",
+    "drug_a": "Propranolol",
+    "drug_b": "Salbutamol",
+    "severity": "MODERATE",
+    "mechanism": "Propranolol (non-selective beta-blocker) blocks beta-2 receptors in bronchial smooth muscle, opposing Salbutamol's bronchodilator effect.",
+    "clinical_effect": "Bronchospasm, reduced Salbutamol efficacy in asthma",
+    "recommendation": "AVOID non-selective beta-blockers in asthma patients. Use cardio-selective beta-blocker (Metoprolol, Bisoprolol) if beta-blocker needed.",
+    "source": "ICMR Asthma Protocol 5"
+  },
+  {
+    "id": "DI_032",
+    "drug_a": "Metformin",
+    "drug_b": "Alcohol (ethanol)",
+    "severity": "MODERATE",
+    "mechanism": "Alcohol inhibits gluconeogenesis and potentiates Metformin's suppression of hepatic glucose output. Also increases lactic acidosis risk.",
+    "clinical_effect": "Hypoglycemia, lactic acidosis",
+    "recommendation": "Counsel patients to limit alcohol. Avoid binge drinking. Monitor blood glucose.",
+    "source": "ICMR Diabetes Protocol 2"
+  },
+  {
+    "id": "DI_033",
+    "drug_a": "Azithromycin",
+    "drug_b": "Amiodarone",
+    "severity": "MODERATE",
+    "mechanism": "Both prolong QT interval through different mechanisms (hERG channel blockade).",
+    "clinical_effect": "QT prolongation → Torsades de Pointes → sudden cardiac death",
+    "recommendation": "Avoid combination. Use alternative antibiotic (Amoxicillin for respiratory, Cephalexin for skin).",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_034",
+    "drug_a": "Sumatriptan",
+    "drug_b": "SSRI (Sertraline/Fluoxetine)",
+    "severity": "MILD",
+    "mechanism": "Sumatriptan is a 5-HT1B/1D agonist; SSRIs increase serotonin. Theoretical serotonin syndrome risk.",
+    "clinical_effect": "Serotonin syndrome (rare with triptans, but FDA black box warning exists)",
+    "recommendation": "Combination is commonly used in practice. Warn patient about symptoms: agitation, tremor, fever. Use lowest effective Sumatriptan dose.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_035",
+    "drug_a": "Doxylamine",
+    "drug_b": "Antihistamines (Cetirizine/Hydroxyzine)",
+    "severity": "MILD",
+    "mechanism": "Additive sedation — both are antihistamines with CNS depressant effects.",
+    "clinical_effect": "Excessive drowsiness, impaired coordination",
+    "recommendation": "Avoid combining. Choose one antihistamine. If Doxylamine used for pregnancy nausea, avoid additional antihistamines.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_036",
+    "drug_a": "Terbinafine",
+    "drug_b": "Caffeine",
+    "severity": "MILD",
+    "mechanism": "Terbinafine inhibits CYP1A2, reducing caffeine clearance by ~20%.",
+    "clinical_effect": "Increased caffeine effect — insomnia, palpitations",
+    "recommendation": "Reduce caffeine intake during Terbinafine course. Generally clinically insignificant.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_037",
+    "drug_a": "Nitrofurantoin",
+    "drug_b": "Antacids (Magnesium trisilicate)",
+    "severity": "MILD",
+    "mechanism": "Magnesium trisilicate reduces Nitrofurantoin absorption.",
+    "clinical_effect": "Reduced antibiotic efficacy",
+    "recommendation": "Separate doses by 2 hours. Take Nitrofurantoin with food (improves absorption).",
+    "source": "ICMR Antimicrobial Protocol 9"
+  },
+  {
+    "id": "DI_038",
+    "drug_a": "Ondansetron",
+    "drug_b": "Tramadol",
+    "severity": "MODERATE",
+    "mechanism": "Ondansetron (5-HT3 antagonist) may reduce analgesic efficacy of Tramadol, which partly works through serotonergic pathways.",
+    "clinical_effect": "Reduced pain relief from Tramadol",
+    "recommendation": "Monitor pain control. May need alternative antiemetic (Metoclopramide) or alternative analgesic.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  },
+  {
+    "id": "DI_039",
+    "drug_a": "Insulin",
+    "drug_b": "Beta-blockers (Propranolol/Metoprolol)",
+    "severity": "MODERATE",
+    "mechanism": "Beta-blockers mask hypoglycemia symptoms (tremor, tachycardia) and impair glycogenolysis, prolonging hypoglycemic episodes.",
+    "clinical_effect": "Masked and prolonged hypoglycemia",
+    "recommendation": "Prefer cardio-selective beta-blockers (Metoprolol, Bisoprolol) over non-selective (Propranolol). Counsel patient that sweating is the only reliable hypoglycemia symptom on beta-blockers.",
+    "source": "ICMR Diabetes Protocol 2"
+  },
+  {
+    "id": "DI_040",
+    "drug_a": "Phenytoin",
+    "drug_b": "Oral contraceptives",
+    "severity": "MODERATE",
+    "mechanism": "Phenytoin induces CYP3A4, increasing metabolism of estrogen and progestin components.",
+    "clinical_effect": "Contraceptive failure",
+    "recommendation": "Use non-oral contraception (IUD, depot injection) or higher-dose OCP. Same as Carbamazepine interaction.",
+    "source": "ICMR Drug Interaction Protocol 7"
+  }
+]
