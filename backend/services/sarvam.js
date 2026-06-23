@@ -4,10 +4,10 @@ import FormData from "form-data";
 import { SarvamAIClient } from "sarvamai";
 
 // Switch: "rest" for audio under 30s, "batch" for longer recordings
-export const SARVAM_API_MODE = process.env.SARVAM_API_MODE || "rest";
-
+// Read at call time (not module load time) so dotenv has already populated process.env
 export async function transcribeWithSarvam(filePath) {
-  if (SARVAM_API_MODE === "batch") {
+  const mode = process.env.SARVAM_API_MODE || "rest";
+  if (mode === "batch") {
     return transcribeWithSarvamBatch(filePath);
   }
   return transcribeWithSarvamRest(filePath);
