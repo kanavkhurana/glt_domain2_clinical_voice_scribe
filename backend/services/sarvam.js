@@ -1,5 +1,6 @@
 import axios from "axios";
 import fs from "fs";
+import path from "path";
 import FormData from "form-data";
 import { SarvamAIClient } from "sarvamai";
 
@@ -60,12 +61,20 @@ async function transcribeWithSarvamBatch(filePath) {
   await job.start();
   await job.waitUntilComplete();
 
-  const fileResults = await job.getFileResults();
+  const outputDir = `uploads/batch_${Date.now()}`;
+  fs.mkdirSync(outputDir, { recursive: true });
 
-  const transcript = fileResults.successful
-    ?.map((r) => r.transcript)
-    .filter(Boolean)
-    .join(" ") || "";
+  try {
+    await job.downloadOutputs(outputDir);
 
-  return { transcript };
+    // SDK saves output as {input_filename}.json (SpeechToTextJobInstance.js:205)
+    const inputFileName = path.basename(filePath);
+    const outputPath = path.join(outputDir, `${inputFileName}.json`);
+    const raw = JSON.parse(fs.readFileSync(outputPath, "utf8"));
+    console.log("Batch output raw:", JSON.stringify(raw, null, 2));
+
+    return { transcript: raw.transcript || raw.text || "" };
+  } finally {
+    fs.rmSync(outputDir, { recursive: true, force: true });
+  }
 }
