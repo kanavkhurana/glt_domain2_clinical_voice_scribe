@@ -75,13 +75,19 @@ async function transcribeWithSarvamBatch(filePath) {
   try {
     await job.downloadOutputs(outputDir);
 
+    const filesInDir = fs.readdirSync(outputDir);
+    console.log("Files written by downloadOutputs:", filesInDir);
+
     // SDK saves output as {input_filename}.json (SpeechToTextJobInstance.js:205)
     const inputFileName = path.basename(filePath);
     const outputPath = path.join(outputDir, `${inputFileName}.json`);
-    const raw = JSON.parse(fs.readFileSync(outputPath, "utf8"));
+    console.log("Expecting file at:", outputPath, "| Exists:", fs.existsSync(outputPath));
 
-    if (raw.diarized_transcript?.length) {
-      const transcript = raw.diarized_transcript
+    const raw = JSON.parse(fs.readFileSync(outputPath, "utf8"));
+    console.log("Batch output raw:", JSON.stringify(raw, null, 2));
+
+    if (raw.diarized_transcript?.entries?.length) {
+      const transcript = raw.diarized_transcript.entries
         .map((seg) => {
           const start = formatTime(seg.start_time_seconds);
           const end = formatTime(seg.end_time_seconds);
