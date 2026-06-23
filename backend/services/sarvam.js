@@ -14,6 +14,12 @@ export async function transcribeWithSarvam(filePath) {
   return transcribeWithSarvamRest(filePath);
 }
 
+function formatTime(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60).toString().padStart(2, "0");
+  return `${m}:${s}`;
+}
+
 async function transcribeWithSarvamRest(filePath) {
   if (!process.env.SARVAM_API_KEY) {
     throw new Error("SARVAM_API_KEY is missing");
@@ -55,6 +61,8 @@ async function transcribeWithSarvamBatch(filePath) {
     model: "saaras:v3",
     mode: "transcribe",
     languageCode: "en-IN",
+    withDiarization: true,
+    numSpeakers: 2,
   });
 
   await job.uploadFiles([filePath]);
@@ -71,7 +79,17 @@ async function transcribeWithSarvamBatch(filePath) {
     const inputFileName = path.basename(filePath);
     const outputPath = path.join(outputDir, `${inputFileName}.json`);
     const raw = JSON.parse(fs.readFileSync(outputPath, "utf8"));
-    console.log("Batch output raw:", JSON.stringify(raw, null, 2));
+
+    if (raw.diarized_transcript?.length) {
+      const transcript = raw.diarized_transcript
+        .map((seg) => {
+          const start = formatTime(seg.start_time_seconds);
+          const end = formatTime(seg.end_time_seconds);
+          return `[Speaker ${parseInt(seg.speaker_id) + 1}] [${start} - ${end}]: ${seg.transcript}`;
+        })
+        .join("\n");
+      return { transcript };
+    }
 
     return { transcript: raw.transcript || raw.text || "" };
   } finally {
