@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import { fetchDemoTranscripts, fetchKnowledgeFiles, generatePatientSlip, generateSoap, transcribeAudio } from "./api";
 
@@ -40,6 +39,9 @@ const stopRecording = () => {
   const [slip, setSlip] = useState("");
   const [sources, setSources] = useState([]);
   const [expandedSources, setExpandedSources] = useState({});
+  const [soapEditMode, setSoapEditMode] = useState(false);
+  const [scrollToSourceIdx, setScrollToSourceIdx] = useState(null);
+  const textareaRef = useRef(null);
   const [knowledgeFiles, setKnowledgeFiles] = useState([]);
   const [demoCases, setDemoCases] = useState([]);
   const [language, setLanguage] = useState("English");
@@ -50,6 +52,23 @@ const stopRecording = () => {
     fetchKnowledgeFiles().then(setKnowledgeFiles).catch(() => {});
     fetchDemoTranscripts().then(setDemoCases).catch(() => {});
   }, []);
+
+  useEffect(() => {
+    if (soapEditMode && textareaRef.current) textareaRef.current.focus();
+  }, [soapEditMode]);
+
+  useEffect(() => {
+    if (scrollToSourceIdx === null) return;
+    const el = document.getElementById(`source-${scrollToSourceIdx}`);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.classList.add("highlighted");
+    const timer = setTimeout(() => {
+      el.classList.remove("highlighted");
+      setScrollToSourceIdx(null);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, [scrollToSourceIdx]);
 
 <div className="recordBox">
   {!recording ? (
@@ -175,8 +194,15 @@ const stopRecording = () => {
 
       <section className="grid two">
         <div className="card">
-          <h2>2. Editable SOAP Review</h2>
-          {soap ? (
+          <div className="soap-card-header">
+            <h2>2. Editable SOAP Review</h2>
+            {soap && (
+              <button className="edit-toggle" onClick={() => setSoapEditMode(m => !m)}>
+                {soapEditMode ? "Done Editing" : "Edit Note"}
+              </button>
+            )}
+          </div>
+          {soap && !soapEditMode ? (
             <div className="soap-rendered">
               {soap.split("\n").map((line, li) => {
                 const parts = [];
@@ -190,14 +216,7 @@ const stopRecording = () => {
                     <button key={m.index} className="cite-badge" onClick={() => {
                       const idx = num - 1;
                       setExpandedSources(prev => ({ ...prev, [idx]: true }));
-                      setTimeout(() => {
-                        const el = document.getElementById(`source-${idx}`);
-                        if (el) {
-                          el.scrollIntoView({ behavior: "smooth", block: "center" });
-                          el.classList.add("highlighted");
-                          setTimeout(() => el.classList.remove("highlighted"), 1500);
-                        }
-                      }, 50);
+                      setScrollToSourceIdx(idx);
                     }}>S{num}</button>
                   );
                   last = m.index + m[0].length;
@@ -207,7 +226,7 @@ const stopRecording = () => {
               })}
             </div>
           ) : (
-            <textarea className="large" value={soap} onChange={e => setSoap(e.target.value)} placeholder="SOAP note will appear here. Doctor can edit before approval." />
+            <textarea ref={textareaRef} className="large" value={soap} onChange={e => setSoap(e.target.value)} placeholder="SOAP note will appear here. Doctor can edit before approval." />
           )}
           <div className="row">
             <select value={language} onChange={e => setLanguage(e.target.value)}>

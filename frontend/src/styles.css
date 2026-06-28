@@ -40,6 +40,10 @@ ul { line-height: 1.8; }
 .source-body ul, .source-body ol { padding-left: 18px; margin: 4px 0; }
 .source-body strong { color: #1a3348; }
 code { background: #e9f2fb; padding: 2px 6px; border-radius: 6px; }
+.soap-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.soap-card-header h2 { margin: 0; }
+.edit-toggle { background: #f0f6fc; color: #105c9f; border: 1px solid #c8d8e6; border-radius: 8px; padding: 6px 14px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.edit-toggle:hover { background: #dbeeff; }
 .soap-rendered { min-height: 520px; border: 1px solid #c8d8e6; border-radius: 14px; padding: 12px 16px; overflow-y: auto; font-size: 14px; line-height: 1.8; color: #102033; white-space: pre-wrap; font-family: inherit; }
 .soap-rendered div:empty { min-height: 1em; }
 .cite-badge { background: #dbeeff; color: #105c9f; border: none; border-radius: 4px; padding: 1px 6px; font-size: 11px; font-weight: 700; cursor: pointer; margin: 0 2px; vertical-align: middle; }
