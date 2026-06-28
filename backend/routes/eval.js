@@ -2,14 +2,16 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { listKnowledgeFiles } from "../services/rag.js";
 
 const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const knowledgeDir = path.join(__dirname, "..", "knowledge");
 
-router.get("/knowledge", (_req, res) => res.json({ files: listKnowledgeFiles() }));
+router.get("/knowledge", (_req, res) => {
+  const files = fs.readdirSync(knowledgeDir).filter(f => !f.startsWith("."));
+  res.json({ files });
+});
 
 router.get("/demo-transcripts", (_req, res) => {
   const raw = fs.readFileSync(path.join(knowledgeDir, "P2_consultations_transcripts.json"), "utf8");

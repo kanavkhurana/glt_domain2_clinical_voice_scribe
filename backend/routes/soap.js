@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
       maxTokens: 1500
     });
 
-    const { contextText, chunks } = retrieveContext({ transcript: safeTranscript, entities: extraction, topK: 8 });
+    const { contextText, chunks } = await retrieveContext({ transcript: safeTranscript, entities: extraction, topK: 8 });
 
     const synthesisPrompt = `
 CONSULTATION_ID: ${Date.now()}
@@ -44,7 +44,7 @@ Now produce the final SOAP note using the required CC-SC-R output format.
       maxTokens: 3000
     });
 
-    res.json({ soap, extraction, sources: chunks.map(c => ({ source: c.source, score: c.score, preview: c.text.slice(0, 240) })) });
+    res.json({ soap, extraction, sources: chunks.map(c => ({ source: c.source, score: c.score, text: c.text })) });
   } catch (error) {
     console.error("SOAP generation error", error.message);
     res.status(500).json({ error: "SOAP generation failed", details: error.message });

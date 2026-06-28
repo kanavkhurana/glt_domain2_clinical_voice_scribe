@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect} from "react";
+import ReactMarkdown from "react-markdown";
 import { fetchDemoTranscripts, fetchKnowledgeFiles, generatePatientSlip, generateSoap, transcribeAudio } from "./api";
 
 export default function App() {
@@ -38,6 +39,7 @@ const stopRecording = () => {
   const [soap, setSoap] = useState("");
   const [slip, setSlip] = useState("");
   const [sources, setSources] = useState([]);
+  const [expandedSources, setExpandedSources] = useState({});
   const [knowledgeFiles, setKnowledgeFiles] = useState([]);
   const [demoCases, setDemoCases] = useState([]);
   const [language, setLanguage] = useState("English");
@@ -174,7 +176,39 @@ const stopRecording = () => {
       <section className="grid two">
         <div className="card">
           <h2>2. Editable SOAP Review</h2>
-          <textarea className="large" value={soap} onChange={e => setSoap(e.target.value)} placeholder="SOAP note will appear here. Doctor can edit before approval." />
+          {soap ? (
+            <div className="soap-rendered">
+              {soap.split("\n").map((line, li) => {
+                const parts = [];
+                let last = 0;
+                const re = /\[S(\d+)\]/g;
+                let m;
+                while ((m = re.exec(line)) !== null) {
+                  if (m.index > last) parts.push(line.slice(last, m.index));
+                  const num = parseInt(m[1], 10);
+                  parts.push(
+                    <button key={m.index} className="cite-badge" onClick={() => {
+                      const idx = num - 1;
+                      setExpandedSources(prev => ({ ...prev, [idx]: true }));
+                      setTimeout(() => {
+                        const el = document.getElementById(`source-${idx}`);
+                        if (el) {
+                          el.scrollIntoView({ behavior: "smooth", block: "center" });
+                          el.classList.add("highlighted");
+                          setTimeout(() => el.classList.remove("highlighted"), 1500);
+                        }
+                      }, 50);
+                    }}>S{num}</button>
+                  );
+                  last = m.index + m[0].length;
+                }
+                if (last < line.length) parts.push(line.slice(last));
+                return <div key={li}>{parts.length > 0 ? parts : " "}</div>;
+              })}
+            </div>
+          ) : (
+            <textarea className="large" value={soap} onChange={e => setSoap(e.target.value)} placeholder="SOAP note will appear here. Doctor can edit before approval." />
+          )}
           <div className="row">
             <select value={language} onChange={e => setLanguage(e.target.value)}>
               <option>English</option>
@@ -187,10 +221,20 @@ const stopRecording = () => {
         <div className="card">
           <h2>3. Retrieved RAG Sources</h2>
           {sources.length === 0 ? <p>No sources yet.</p> : sources.map((s, idx) => (
-            <div className="source" key={`${s.source}-${idx}`}>
-              <strong>{idx + 1}. {s.source}</strong>
-              <span>score {s.score}</span>
-              <p>{s.preview}...</p>
+            <div className="source" id={`source-${idx}`} key={`${s.source}-${idx}`}>
+              <div
+                className="source-header"
+                onClick={() => setExpandedSources(prev => ({ ...prev, [idx]: !prev[idx] }))}
+              >
+                <strong>{idx + 1}. {s.source}</strong>
+                <span>score {s.score.toFixed(4)}</span>
+                <span className="source-chevron">{expandedSources[idx] ? "▲" : "▼"}</span>
+              </div>
+              {expandedSources[idx] && (
+                <div className="source-body">
+                  <ReactMarkdown>{s.text}</ReactMarkdown>
+                </div>
+              )}
             </div>
           ))}
         </div>

@@ -55,6 +55,17 @@ Red flags require physician acknowledgement.
 Drug interaction flags require physician confirmation.
 Patient correction must be handled by doctor edit.
 
+## CITATION INSTRUCTIONS
+When you use information from a retrieved knowledge artefact, add an inline citation marker immediately after that sentence using the format [S1], [S2], etc. — the number matches the SOURCE number in the retrieved artefacts provided to you.
+
+Rules:
+- Place the marker at the end of the sentence, after the content but before any punctuation
+- Only cite when you are directly drawing on a retrieved artefact — do not cite general medical knowledge
+- Multiple markers are allowed if multiple sources support the same sentence: e.g. [S1][S3]
+- Citations are most expected in: FLAGS (DRUG INTERACTIONS, RED FLAGS) and PLAN sections
+- Example: "Warfarin + Aspirin combination carries CRITICAL hemorrhage risk [S1]."
+- Example: "Immediate ECG within 10 minutes is indicated [S2]."
+
 ## OUTPUT STRUCTURE
 Return exactly this format:
 
