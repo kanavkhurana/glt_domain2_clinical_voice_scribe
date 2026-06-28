@@ -3,6 +3,29 @@ import extractionPrompt from "../prompts/extractionPrompt.js";
 import SOAP_SYSTEM_PROMPT from "../prompts/soapSystemPrompt.js";
 import { callOpenAI } from "../services/openaiClient.js";
 import { retrieveContext } from "../services/rag.js";
+import { saveConsultation } from "../services/db/adapter.js";
+
+function classifyFlags(soap) {
+  const flagsIdx = soap.indexOf("--- FLAGS ---");
+  if (flagsIdx === -1) return { flagLevel: "green", redFlags: null, drugFlags: null, missing: null };
+
+  const flagText = soap.slice(flagsIdx);
+  const isEmpty = s => !s?.trim() || /^(none|nil|not (applicable|identified|detected|present))\.?$/i.test(s.trim());
+
+  const redMatch = /🔴 RED FLAGS:\s*(.+?)(?=⚠️|📋|---|$)/s.exec(flagText);
+  const drugMatch = /⚠️ DRUG INTERACTIONS:\s*(.+?)(?=📋|---|$)/s.exec(flagText);
+  const missingMatch = /📋 MISSING:\s*(.+?)(?=---|$)/s.exec(flagText);
+
+  const redFlags = isEmpty(redMatch?.[1]) ? null : redMatch[1].trim();
+  const drugFlags = isEmpty(drugMatch?.[1]) ? null : drugMatch[1].trim();
+  const missing = isEmpty(missingMatch?.[1]) ? null : missingMatch[1].trim();
+
+  let flagLevel = "green";
+  if (redFlags || drugFlags) flagLevel = "red";
+  else if (missing) flagLevel = "amber";
+
+  return { flagLevel, redFlags, drugFlags, missing };
+}
 
 const router = express.Router();
 
@@ -21,9 +44,12 @@ router.post("/", async (req, res) => {
 
     const { contextText, chunks } = await retrieveContext({ transcript: safeTranscript, entities: extraction, topK: 8 });
 
+    const id = String(Date.now());
+    const date = new Date().toISOString().slice(0, 10);
+
     const synthesisPrompt = `
-CONSULTATION_ID: ${Date.now()}
-DATE: ${new Date().toISOString().slice(0, 10)}
+CONSULTATION_ID: ${id}
+DATE: ${date}
 
 TRANSCRIPT:
 ${safeTranscript}
@@ -44,7 +70,18 @@ Now produce the final SOAP note using the required CC-SC-R output format.
       maxTokens: 3000
     });
 
-    res.json({ soap, extraction, sources: chunks.map(c => ({ source: c.source, score: c.score, text: c.text })) });
+    let chiefComplaint = "Not discussed";
+    try { chiefComplaint = JSON.parse(extraction).chief_complaint || chiefComplaint; } catch {}
+
+    const { flagLevel, redFlags, drugFlags, missing } = classifyFlags(soap);
+
+    saveConsultation({
+      id, date, savedAt: new Date().toISOString(),
+      chiefComplaint, soap, flagLevel, redFlags, drugFlags, missing,
+      approved: false, approvedAt: null
+    }).catch(err => console.error("DB save error:", err));
+
+    res.json({ soap, extraction, consultationId: id, sources: chunks.map(c => ({ source: c.source, score: c.score, text: c.text })) });
   } catch (error) {
     console.error("SOAP generation error", error.message);
     res.status(500).json({ error: "SOAP generation failed", details: error.message });

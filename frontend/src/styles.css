@@ -50,3 +50,50 @@ code { background: #e9f2fb; padding: 2px 6px; border-radius: 6px; }
 .cite-badge:hover { background: #105c9f; color: white; }
 .source.highlighted { border-left: 3px solid #edd37f; background: #fffbf0; transition: background 0.3s; }
 @media (max-width: 850px) { .two, .row { grid-template-columns: 1fr; } .hero { flex-direction: column; align-items: flex-start; } h1 { font-size: 32px; } .app-shell { padding: 18px; } }
+
+/* ── Tabs ── */
+.tab-bar { display: flex; gap: 8px; margin-bottom: 20px; }
+.tab { background: #e8f1fb; color: #4a6f8a; border: 1px solid #c8d8e6; border-radius: 999px; padding: 8px 20px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 0; }
+.tab.active { background: #105c9f; color: white; border-color: #105c9f; }
+.tab:hover:not(.active) { background: #dbeeff; }
+
+/* ── Dashboard header ── */
+.dashboard-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+.dashboard-title { margin: 0 0 8px; color: #123d60; font-size: 22px; }
+.dashboard-date-row { display: flex; gap: 10px; align-items: center; }
+.date-picker { width: auto; padding: 8px 12px; border-radius: 10px; font-size: 14px; margin-top: 0; }
+.refresh-btn { margin-top: 0; padding: 8px 16px; font-size: 13px; border-radius: 10px; }
+.count-chips { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.chip { background: #e8f1fb; color: #4a6f8a; border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 700; }
+.approved-chip { background: #e2e8f0; color: #475569; }
+.green-chip    { background: #dcfce7; color: #15803d; }
+.amber-chip    { background: #fef3c7; color: #92400e; }
+.red-chip      { background: #fee2e2; color: #991b1b; }
+
+/* ── Dashboard grid ── */
+.dashboard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+
+/* ── Dashboard cards ── */
+.dashboard-card { background: #fff; border: 1px solid #dbe7f2; border-radius: 18px; padding: 16px 18px; box-shadow: 0 4px 16px rgba(27,70,105,0.07); cursor: pointer; transition: box-shadow 0.15s; }
+.dashboard-card:hover { box-shadow: 0 8px 24px rgba(27,70,105,0.13); }
+.dashboard-card.green    { border-left: 4px solid #22c55e; background: #f0fdf4; }
+.dashboard-card.amber    { border-left: 4px solid #f59e0b; background: #fffbeb; }
+.dashboard-card.red      { border-left: 4px solid #ef4444; background: #fef2f2; }
+.dashboard-card.approved { border-left: 4px solid #94a3b8; background: #f8fafc; opacity: 0.75; }
+.card-top-row { display: flex; align-items: flex-start; gap: 10px; }
+.card-flag-emoji { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.card-main { flex: 1; min-width: 0; }
+.card-complaint { font-weight: 700; color: #102033; font-size: 15px; }
+.card-meta { font-size: 12px; color: #668098; margin-top: 2px; }
+.card-chevron { color: #668098; font-size: 11px; flex-shrink: 0; margin-top: 4px; }
+.card-flag-snippet { margin-top: 10px; font-size: 12px; color: #4a5568; line-height: 1.5; border-top: 1px solid rgba(0,0,0,0.06); padding-top: 8px; }
+.card-flag-snippet div { margin-bottom: 3px; }
+.card-soap-expanded { min-height: auto; max-height: 360px; margin-top: 12px; font-size: 13px; }
+.card-soap-textarea { min-height: 320px; margin-top: 12px; font-size: 13px; line-height: 1.6; }
+.card-footer { margin-top: 12px; display: flex; justify-content: flex-end; align-items: center; }
+.card-footer-actions { display: flex; gap: 8px; align-items: center; }
+.approve-btn { margin-top: 0; padding: 7px 16px; font-size: 13px; font-weight: 700; background: #16a34a; color: white; border-radius: 10px; }
+.approve-btn:hover { background: #15803d; filter: none; }
+.approve-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.approved-stamp { font-size: 13px; color: #668098; font-weight: 600; }
+.review-required-note { font-size: 12px; color: #9ca3af; font-style: italic; }

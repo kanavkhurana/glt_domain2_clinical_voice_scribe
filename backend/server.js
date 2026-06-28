@@ -7,6 +7,7 @@ import transcribeRouter from "./routes/transcribe.js";
 import soapRouter from "./routes/soap.js";
 import patientSlipRouter from "./routes/patientSlip.js";
 import evalRouter from "./routes/eval.js";
+import consultationsRouter from "./routes/consultations.js";
 
 
 
@@ -27,5 +28,6 @@ app.use("/api/transcribe", transcribeRouter);
 app.use("/api/soap", soapRouter);
 app.use("/api/patient-slip", patientSlipRouter);
 app.use("/api/eval", evalRouter);
+app.use("/api/consultations", consultationsRouter);
 
 app.listen(port, () => console.log(`Clinical Scribe backend running on ${port}`));

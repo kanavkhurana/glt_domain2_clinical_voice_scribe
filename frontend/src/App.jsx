@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
-import { fetchDemoTranscripts, fetchKnowledgeFiles, generatePatientSlip, generateSoap, transcribeAudio } from "./api";
+import { fetchDemoTranscripts, fetchKnowledgeFiles, generatePatientSlip, generateSoap, transcribeAudio, updateConsultationSoap } from "./api";
+import Dashboard from "./Dashboard";
 
 export default function App() {
   const [mediaRecorder, setMediaRecorder] = useState(null);
@@ -40,8 +41,10 @@ const stopRecording = () => {
   const [sources, setSources] = useState([]);
   const [expandedSources, setExpandedSources] = useState({});
   const [soapEditMode, setSoapEditMode] = useState(false);
+  const [consultationId, setConsultationId] = useState(null);
   const [scrollToSourceIdx, setScrollToSourceIdx] = useState(null);
   const textareaRef = useRef(null);
+  const [view, setView] = useState("consultation");
   const [knowledgeFiles, setKnowledgeFiles] = useState([]);
   const [demoCases, setDemoCases] = useState([]);
   const [language, setLanguage] = useState("English");
@@ -104,6 +107,7 @@ const stopRecording = () => {
       const result = await generateSoap(transcript);
       setSoap(result.soap || "");
       setSources(result.sources || []);
+      setConsultationId(result.consultationId || null);
       setSlip("");
     } catch (e) {
       setError(e.response?.data?.details || e.response?.data?.error || e.message);
@@ -147,6 +151,18 @@ const stopRecording = () => {
         <div className="badge">Doctor approval required</div>
       </header>
 
+      <div className="tab-bar">
+        <button className={`tab${view === "consultation" ? " active" : ""}`} onClick={() => setView("consultation")}>
+          Consultation
+        </button>
+        <button className={`tab${view === "dashboard" ? " active" : ""}`} onClick={() => setView("dashboard")}>
+          End-of-Day Review
+        </button>
+      </div>
+
+      {view === "dashboard" && <Dashboard />}
+
+      {view === "consultation" && <>
       {loading && <div className="notice">{loading}</div>}
       {error && <div className="error">{error}</div>}
 
@@ -197,7 +213,12 @@ const stopRecording = () => {
           <div className="soap-card-header">
             <h2>2. Editable SOAP Review</h2>
             {soap && (
-              <button className="edit-toggle" onClick={() => setSoapEditMode(m => !m)}>
+              <button className="edit-toggle" onClick={() => {
+                if (soapEditMode && consultationId) {
+                  updateConsultationSoap(consultationId, soap).catch(console.error);
+                }
+                setSoapEditMode(m => !m);
+              }}>
                 {soapEditMode ? "Done Editing" : "Edit Note"}
               </button>
             )}
@@ -263,6 +284,7 @@ const stopRecording = () => {
         <h2>4. Patient Slip</h2>
         <textarea className="medium" value={slip} onChange={e => setSlip(e.target.value)} placeholder="Patient-friendly slip will appear here." />
       </section>
+      </>}
     </main>
   );
 }

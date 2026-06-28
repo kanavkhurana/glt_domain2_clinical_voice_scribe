@@ -30,3 +30,18 @@ export async function fetchKnowledgeFiles() {
   const res = await axios.get(`${API_URL}/api/eval/knowledge`);
   return res.data.files;
 }
+
+export async function fetchConsultations(date) {
+  const res = await axios.get(`${API_URL}/api/consultations`, { params: { date } });
+  return res.data.consultations;
+}
+
+export async function approveConsultation(id) {
+  const res = await axios.post(`${API_URL}/api/consultations/${id}/approve`);
+  return res.data;
+}
+
+export async function updateConsultationSoap(id, soap) {
+  const res = await axios.patch(`${API_URL}/api/consultations/${id}/soap`, { soap });
+  return res.data;
+}
