@@ -16,6 +16,32 @@ export async function generateSoap(transcript) {
   return res.data;
 }
 
+export async function generateSoapStream(transcript, { onToken, onDone }) {
+  const res = await fetch(`${API_URL}/api/soap`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ transcript })
+  });
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split("\n\n");
+    buffer = lines.pop();
+    for (const line of lines) {
+      if (!line.startsWith("data: ")) continue;
+      const payload = JSON.parse(line.slice(6));
+      if (payload.type === "token") onToken(payload.content);
+      if (payload.type === "done") onDone(payload);
+    }
+  }
+}
+
 export async function generatePatientSlip(soap, language) {
   const res = await axios.post(`${API_URL}/api/patient-slip`, { soap, language });
   return res.data;

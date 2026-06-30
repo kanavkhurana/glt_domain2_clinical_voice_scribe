@@ -30,3 +30,16 @@ export async function callOpenAI({
 
   return response.choices?.[0]?.message?.content || "";
 }
+
+export async function streamOpenAI({ model = "gpt-4o-mini", system = "", prompt, maxTokens = 3000, temperature = 0 }) {
+  return openai.chat.completions.create({
+    model,
+    temperature,
+    max_tokens: maxTokens,
+    stream: true,
+    messages: [
+      ...(system ? [{ role: "system", content: system }] : []),
+      { role: "user", content: prompt }
+    ]
+  });
+}

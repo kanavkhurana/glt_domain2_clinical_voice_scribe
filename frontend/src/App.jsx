@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
-import { fetchDemoTranscripts, fetchKnowledgeFiles, generatePatientSlip, generateSoap, transcribeAudio, updateConsultationSoap } from "./api";
+import { fetchDemoTranscripts, fetchKnowledgeFiles, generatePatientSlip, generateSoap, generateSoapStream, transcribeAudio, updateConsultationSoap } from "./api";
+
+const STREAMING = import.meta.env.VITE_SOAP_STREAMING === "true";
 import Dashboard from "./Dashboard";
 
 export default function App() {
@@ -103,16 +105,36 @@ const stopRecording = () => {
     if (!transcript.trim()) return setError("Please upload/transcribe audio or paste a transcript first.");
     setError("");
     setLoading("Generating extraction + RAG-grounded SOAP note...");
-    try {
-      const result = await generateSoap(transcript);
-      setSoap(result.soap || "");
-      setSources(result.sources || []);
-      setConsultationId(result.consultationId || null);
-      setSlip("");
-    } catch (e) {
-      setError(e.response?.data?.details || e.response?.data?.error || e.message);
-    } finally {
-      setLoading("");
+
+    if (STREAMING) {
+      setSoap("");
+      setSources([]);
+      try {
+        await generateSoapStream(transcript, {
+          onToken: (token) => setSoap(prev => prev + token),
+          onDone: ({ consultationId, sources }) => {
+            setConsultationId(consultationId || null);
+            setSources(sources || []);
+            setSlip("");
+            setLoading("");
+          }
+        });
+      } catch (e) {
+        setError(e.message);
+        setLoading("");
+      }
+    } else {
+      try {
+        const result = await generateSoap(transcript);
+        setSoap(result.soap || "");
+        setSources(result.sources || []);
+        setConsultationId(result.consultationId || null);
+        setSlip("");
+      } catch (e) {
+        setError(e.response?.data?.details || e.response?.data?.error || e.message);
+      } finally {
+        setLoading("");
+      }
     }
   }
 

@@ -1,7 +1,7 @@
 import express from "express";
 import extractionPrompt from "../prompts/extractionPrompt.js";
 import SOAP_SYSTEM_PROMPT from "../prompts/soapSystemPrompt.js";
-import { callOpenAI } from "../services/openaiClient.js";
+import { callOpenAI, streamOpenAI } from "../services/openaiClient.js";
 import { retrieveContext } from "../services/rag.js";
 import { saveConsultation } from "../services/db/adapter.js";
 
@@ -63,25 +63,61 @@ ${contextText}
 Now produce the final SOAP note using the required CC-SC-R output format.
 `;
 
-    const soap = await callOpenAI({
-      model: process.env.OPENAI_SYNTHESIS_MODEL || "gpt-4o-mini",
-      system: SOAP_SYSTEM_PROMPT,
-      prompt: synthesisPrompt,
-      maxTokens: 3000
-    });
+    if (process.env.SOAP_STREAMING === "true") {
+      res.setHeader("Content-Type", "text/event-stream");
+      res.setHeader("Cache-Control", "no-cache");
+      res.setHeader("Connection", "keep-alive");
 
-    let chiefComplaint = "Not discussed";
-    try { chiefComplaint = JSON.parse(extraction).chief_complaint || chiefComplaint; } catch {}
+      const stream = await streamOpenAI({
+        model: process.env.OPENAI_SYNTHESIS_MODEL || "gpt-4o-mini",
+        system: SOAP_SYSTEM_PROMPT,
+        prompt: synthesisPrompt,
+        maxTokens: 3000
+      });
 
-    const { flagLevel, redFlags, drugFlags, missing } = classifyFlags(soap);
+      let soap = "";
+      for await (const chunk of stream) {
+        const token = chunk.choices[0]?.delta?.content || "";
+        if (token) {
+          soap += token;
+          res.write(`data: ${JSON.stringify({ type: "token", content: token })}\n\n`);
+        }
+      }
 
-    saveConsultation({
-      id, date, savedAt: new Date().toISOString(),
-      chiefComplaint, soap, flagLevel, redFlags, drugFlags, missing,
-      approved: false, approvedAt: null
-    }).catch(err => console.error("DB save error:", err));
+      let chiefComplaint = "Not discussed";
+      try { chiefComplaint = JSON.parse(extraction).chief_complaint || chiefComplaint; } catch {}
+      const { flagLevel, redFlags, drugFlags, missing } = classifyFlags(soap);
 
-    res.json({ soap, extraction, consultationId: id, sources: chunks.map(c => ({ source: c.source, score: c.score, text: c.text })) });
+      saveConsultation({
+        id, date, savedAt: new Date().toISOString(),
+        chiefComplaint, soap, flagLevel, redFlags, drugFlags, missing,
+        approved: false, approvedAt: null
+      }).catch(err => console.error("DB save error:", err));
+
+      res.write(`data: ${JSON.stringify({ type: "done", consultationId: id, extraction, sources: chunks.map(c => ({ source: c.source, score: c.score, text: c.text })) })}\n\n`);
+      res.end();
+
+    } else {
+      const soap = await callOpenAI({
+        model: process.env.OPENAI_SYNTHESIS_MODEL || "gpt-4o-mini",
+        system: SOAP_SYSTEM_PROMPT,
+        prompt: synthesisPrompt,
+        maxTokens: 3000
+      });
+
+      let chiefComplaint = "Not discussed";
+      try { chiefComplaint = JSON.parse(extraction).chief_complaint || chiefComplaint; } catch {}
+
+      const { flagLevel, redFlags, drugFlags, missing } = classifyFlags(soap);
+
+      saveConsultation({
+        id, date, savedAt: new Date().toISOString(),
+        chiefComplaint, soap, flagLevel, redFlags, drugFlags, missing,
+        approved: false, approvedAt: null
+      }).catch(err => console.error("DB save error:", err));
+
+      res.json({ soap, extraction, consultationId: id, sources: chunks.map(c => ({ source: c.source, score: c.score, text: c.text })) });
+    }
   } catch (error) {
     console.error("SOAP generation error", error.message);
     res.status(500).json({ error: "SOAP generation failed", details: error.message });
