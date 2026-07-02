@@ -1,0 +1,32 @@
+question_id,consultation_or_query,source_doc,expected_soap_elements,expected_flags,expected_confidence,in_scope
+1,"D: Good morning. Please sit down. What brings you in today?
+P: Good morning, Doctor. I've been having this heaviness in my chest. Started maybe 10-12 days ago.
+D: Okay. Tell me more — where exactly is this heaviness? And when does it come on?
+P: Here, in the middle. And it only comes when I'm walking fast or climbing stairs. Not at rest.
+D: How long does it last when it comes?
+P: 2-3 minutes. Then it goes if I stop and rest.
+D: Any sweating when it happens?
+P: Yes, I do sweat. Feels like my shirt gets damp.
+D: Any pain going to your arm, shoulder, or jaw?
+P: No, no pain. Just the heaviness and sweating.
+D: Any breathlessness?
+P: Slight. With the heaviness, yes.
+D: Any episodes at rest — sitting, lying down, at night?
+P: No, only on exertion.
+D: Do you have any medical conditions? Diabetes, blood pressure?
+P: Yes, I have diabetes. For about 9 years now.
+D: What medicines are you taking?
+P: Metformin. 500 twice a day.
+D: Anything else — for blood pressure, cholesterol?
+P: No, only Metformin.
+D: Any family history of heart problems?
+P: My father had a heart attack. He was around 60 when it happened.
+D: Let me check your BP. BP is 148 over 92. That is elevated. Were you aware of high blood pressure?
+P: No, Doctor. Nobody told me.
+D: Given your symptoms — exertional chest heaviness with sweating, your diabetes, elevated BP, and your father's history — I want to rule out a cardiac cause. I am ordering an ECG right now and a blood test for Troponin levels.
+P: Is it something serious?
+D: We need the reports first. But don't delay — please go for the ECG immediately, and the Troponin blood test. Come back to me as soon as the reports are ready.
+P: Okay, Doctor.
+D: Until then, no climbing stairs, no fast walking, no exertion. And if the heaviness comes on while sitting or at rest, or if it gets worse, go directly to the emergency department. Don't wait.
+P: I understand, Doctor.
+D: Good. I am writing the orders for ECG and Troponin. We will review and decide next steps once I have those results.","P2_icmr_clinical_protocols.txt (Protocol 1)","S: exertional chest heaviness + sweating + mild breathlessness on exertion; started 10-12 days ago; resolves with 2-3 min rest; no arm/jaw pain; no rest symptoms; O: BP 148/92; diabetic 9 years on Metformin 500mg BD; A: exertional chest heaviness with sweating in diabetic — cardiac cause to be excluded; P: ECG (immediate) + Troponin blood test; no exertion until reports; emergency if symptoms occur at rest","🔴 Exertional chest heaviness + sweating in diabetic with elevated BP — cardiac concern flagged; 📋 MISSING: SpO2 not recorded",HIGH,YES

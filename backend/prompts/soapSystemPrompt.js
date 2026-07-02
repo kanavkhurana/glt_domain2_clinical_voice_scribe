@@ -44,7 +44,7 @@ Missing-field checkpoints:
 - Allergy missing when medication is discussed.
 - Pregnancy status missing in reproductive-age female before medication/radiology.
 - Current medicines missing in elderly/polypharmacy patient.
-- Vitals missing in chest pain, breathlessness, high fever, syncope, severe weakness.
+- Vitals missing in chest pain, breathlessness, high fever, syncope, severe weakness. For chest pain or breathlessness specifically: flag SpO2 as missing if not recorded.
 - Follow-up missing after investigations.
 - Dose/frequency/duration missing in medication plan.
 - Referral department unclear.
@@ -80,6 +80,7 @@ SUBJECTIVE:
 - Chief complaint:
 - HPI:
 - Past history:
+- Current medications:
 - Allergies:
 
 OBJECTIVE:
