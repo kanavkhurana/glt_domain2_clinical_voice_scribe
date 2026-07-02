@@ -30,3 +30,28 @@ P: Okay, Doctor.
 D: Until then, no climbing stairs, no fast walking, no exertion. And if the heaviness comes on while sitting or at rest, or if it gets worse, go directly to the emergency department. Don't wait.
 P: I understand, Doctor.
 D: Good. I am writing the orders for ECG and Troponin. We will review and decide next steps once I have those results.","P2_icmr_clinical_protocols.txt (Protocol 1)","S: exertional chest heaviness + sweating + mild breathlessness on exertion; started 10-12 days ago; resolves with 2-3 min rest; no arm/jaw pain; no rest symptoms; O: BP 148/92; diabetic 9 years on Metformin 500mg BD; A: exertional chest heaviness with sweating in diabetic — cardiac cause to be excluded; P: ECG (immediate) + Troponin blood test; no exertion until reports; emergency if symptoms occur at rest","🔴 Exertional chest heaviness + sweating in diabetic with elevated BP — cardiac concern flagged; 📋 MISSING: SpO2 not recorded",HIGH,YES
+2,"D: Good morning. What brings you in today?
+P: My daughter has had a fever for the past three days, and she keeps pulling at her ear and crying.
+D: How high has the fever been?
+P: Around 102°F. It comes down a little with paracetamol but keeps coming back.
+D: Did she have a cold or runny nose before the fever started?
+P: Yes, she had a runny nose about a week before this started.
+D: Is she pulling at one ear or both?
+P: Both, but she cries more when I touch the right one.
+D: Any discharge coming from either ear?
+P: No, no discharge.
+D: Any vomiting, diarrhoea, or rash?
+P: No, none of that.
+D: Let me take a look in her ears with the otoscope. Okay — both eardrums are red and bulging, right side more than left. This looks like an ear infection in both ears.
+D: Does she have any allergies to medicines?
+P: No, she's never reacted to any medicine before.
+D: Is she on any regular medications?
+P: No, nothing regular.
+D: Her temperature today is 102°F. Based on the exam, this is bilateral acute otitis media. I'm starting her on Amoxicillin syrup — 7ml, three times a day, for 7 days.
+P: Okay.
+D: It's important she finishes the full 7 days even if she seems better after a couple of days — stopping early can let the infection come back and makes it harder to treat next time.
+P: I'll make sure she finishes it.
+D: You can also give paracetamol syrup for the fever and ear pain if she needs it, alongside the antibiotic. If the fever hasn't come down in 2-3 days, or she becomes drowsy, unusually unwell, or you see fluid draining from the ear, bring her back immediately.
+P: Understood, Doctor.
+D: I'll see her again in a week to make sure the infection has cleared. Come back sooner if she's still in a lot of pain after a couple of days on the antibiotic.
+P: Thank you, Doctor.","P2_icmr_clinical_protocols.txt (Protocol 9)","S: fever 3 days (up to 102°F, partial response to paracetamol) + bilateral ear pulling and crying, worse on right; preceding upper respiratory infection ~1 week prior; no ear discharge, vomiting, diarrhoea, or rash; no known drug allergies; not on regular medications; O: temperature 102°F; bilateral red bulging tympanic membranes on otoscopy, right worse than left; A: bilateral acute otitis media; P: Amoxicillin syrup 7ml TDS x7 days (complete full course); paracetamol PRN for fever/pain; follow-up in 1 week; return sooner if fever persists beyond 2-3 days, drowsiness, or ear discharge develops","No flags; antibiotic use appropriate per ICMR Protocol 9 (AOM with severe symptoms); full antibiotic course counseling documented",HIGH,YES
